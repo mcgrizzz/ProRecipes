@@ -20,6 +20,10 @@ It's up now.
 	 * a passion. Then life hit me. Thus, it's messy and ugly and disgusting and I hate my baby.  This is where you guys come in. 
 	 * Fix my baby. 
 	 *  
-	 * Feel free to make whatever changes you like (without removing functionality). 
+	 * Feel free to make whatever changes you like (without removing functionality).
+	 * 
+	 * I've left the anti-piracy code commented out. 
+	 *
+	 *
 	 
    
