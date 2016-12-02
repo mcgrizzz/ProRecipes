@@ -1,0 +1,33 @@
+Item_Viewer_Title: Item Viewer
+Item_Viewer_Prompt: Click a material to view its custom items
+Item_Builder_Title: Item Builder
+Item_Builder_Insert: Insert a desired itemstack to modify.
+Item_Builder_Edit: You may edit the itemstack.
+Item_Builder_Lore: Type desired lore to add in chat
+Item_Builder_Name: Type desired display name in chat
+Item_Builder_Done: Your item is in your inventory!
+Recipe_Builder_Title: Recipe Builder
+Recipe_Builder_MultiCraft_Title: Multi-Craft
+Recipe_Builder_MultiCraft_Add: Add ingredients on left, results on right
+Recipe_Builder_Empty: You cannot save an empty recipe
+Recipe_Builder_Insert: Insert the desired result
+Recipe_Builder_Add: Add your ingredients! Close to save recipe.
+Recipe_Builder_Furnace: Add your source! Close to save recipe.
+Recipe_Viewer_Title: Recipe Manager
+Recipe_Viewer_Title2: Recipe Viewer
+Recipe_Viewer_Prompt: View and manage recipes
+Recipe_Viewer_Prompt2: View recipes
+Recipe_Viewer_Edited: Recipe edited!
+Recipe_Viewer_Deleted: Recipe deleted!
+Furnace_Saved: Your furnace recipe has been saved!
+Shapeless_Saved: Your shapeless recipe has been saved!
+Shaped_Saved: Your shaped recipe has been saved!
+Multi-Craft_Saved: Your multi-craft recipe has been saved!
+Choose_Type: Choose the type of recipe
+Multi_Craft_GUI: Multi-Craft Table
+Mulit_Craft_Enter: Enter Recipe
+Multi_Craft_View: View Recipe
+Multi_Craft: Multi-Craft
+
+
+

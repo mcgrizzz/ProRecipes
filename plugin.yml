@@ -1,0 +1,17 @@
+name: ProRecipes
+main: mc.mcgrizzz.prorecipes.ProRecipes
+version: 1.8.4
+softdepend: [TitleManager, FastCraft]
+commands:
+    builditem:
+        description: Build an item with a custom display name, and lore.
+        aliases: bi
+    recipe:
+        description: Create a recipe in game with an easy to follow GUI.
+        aliases: rec
+    recipes:
+        description: View and manage all of the created recipes.
+        aliases: recs
+    items:
+        description: View all custom created items.
+        aliases: it
