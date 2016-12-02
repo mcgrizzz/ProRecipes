@@ -1,9 +1,9 @@
 # ProRecipes
 It's up now. 
 
-/**
+
 	 * 
-	 * WELCOME to the source of my eternal pain. I know it's not pretty, some of it's just plain lazy. I know you'll eventually forgive me. 
+	 * WELCOME to the source of my eternal pain. I know it's not pretty, some of it's just plain lazy. I know you'll eventually  forgive me. 
 	 * 
 	 * I have never had time to officially clean up the mess that is this shitty waste of my useless life. That's why I decided to
 	 * release it open source, for free. I don't have nearly as much time as I used to. This is for the best. Please submit code 
@@ -21,5 +21,5 @@ It's up now.
 	 * Fix my baby. 
 	 *  
 	 * Feel free to make whatever changes you like (without removing functionality). 
-	 */
+	 
    
