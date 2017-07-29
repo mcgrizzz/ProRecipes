@@ -1742,7 +1742,7 @@ public class Recipes implements Listener{
 			
 			//Add ingredients to mock recipe
 			for(ItemStack i : items){
-				if(!i.getType().equals(Material.AIR)){
+				if(i != null && !i.getType().equals(Material.AIR)){
 					if(i.equals(new ItemStack(Material.ANVIL)) && anvil == 0){
 						anvil = 1;
 						continue;
