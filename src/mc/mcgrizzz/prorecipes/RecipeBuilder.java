@@ -19,8 +19,6 @@ import org.bukkit.metadata.FixedMetadataValue;
 import com.licel.stringer.annotations.insecure;
 import com.licel.stringer.annotations.secured;
 
-import co.kepler.fastcraft.api.FastCraftApi;
-
 public class RecipeBuilder implements Listener{
 	
 	//Used for backup
@@ -88,7 +86,6 @@ public class RecipeBuilder implements Listener{
 	
  	
 	public void openRecipeBuilder(final Player p, final String type){
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
 		ItemBuilder.close(p);
 		ItemBuilder.sendMessage(p, m.getMessage("Recipe_Builder_Title", ChatColor.GOLD + "Recipe Builder") , m.getMessage("Recipe_Builder_Insert", ChatColor.DARK_GREEN + "Insert the desired result"));
 		
@@ -107,7 +104,6 @@ public class RecipeBuilder implements Listener{
 	}
 	
 	private void openShapeless(final Player p) {
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
 		final ItemStack i = p.getOpenInventory().getItem(0).clone();
 		ItemBuilder.close(p);
 		p.setMetadata("closed", new FixedMetadataValue(ProRecipes.getPlugin(), ""));
@@ -129,7 +125,6 @@ public class RecipeBuilder implements Listener{
 	}
 
 	private void openShaped(final Player p) {
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
 		final ItemStack i = p.getOpenInventory().getItem(0).clone();
 		
 		ItemBuilder.close(p);
@@ -152,8 +147,6 @@ public class RecipeBuilder implements Listener{
 	}
 	
 	private void openFurnace(final Player p) {
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
-		
 		final ItemStack i = p.getOpenInventory().getItem(0).clone();
 		
 		ItemBuilder.close(p);
@@ -192,9 +185,6 @@ public class RecipeBuilder implements Listener{
 	
 	
 	public void openChoice(final Player p) {
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
-		
-		
 		ItemBuilder.close(p);
 		p.setMetadata("closed", new FixedMetadataValue(ProRecipes.getPlugin(), ""));
 		ItemBuilder.sendMessage(p, m.getMessage("Recipe_Builder_Title", ChatColor.GOLD + "Recipe Builder") ,  m.getMessage("Choose_Type", ChatColor.DARK_GREEN + "Choose the type of recipe"));
@@ -240,9 +230,6 @@ public class RecipeBuilder implements Listener{
 	}
 	
 	public void askPermission(final Player p){
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
-		
-		
 		ItemBuilder.close(p);
 		p.setMetadata("closed", new FixedMetadataValue(ProRecipes.getPlugin(), ""));
 		ItemBuilder.sendMessage(p, m.getMessage("Recipe_Builder_Title", ChatColor.GOLD + "Recipe Builder") , m.getMessage("Choose_Permission", ChatColor.DARK_GREEN + "Type a permission. Type 'no' for no permission"));
