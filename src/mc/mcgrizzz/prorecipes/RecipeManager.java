@@ -22,8 +22,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.licel.stringer.annotations.insecure;
 import com.licel.stringer.annotations.secured;
 
-import co.kepler.fastcraft.api.FastCraftApi;
-
 public class RecipeManager implements Listener {
 	
 	public HashMap<String, RecipeShaped> shaped = new HashMap<String, RecipeShaped>();
@@ -39,8 +37,6 @@ public class RecipeManager implements Listener {
 	}
 	
 	public void openRecipeManager(final Player p){
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
-		
 		if(p.hasPermission("prorecipes.modifyrecipes")){
 			ItemBuilder.sendMessage(p, m.getMessage("Recipe_Viewer_Title", ChatColor.GOLD + "Recipe Manager"), 
 					m.getMessage("Recipe_Viewer_Prompt", ChatColor.DARK_GREEN + "View and manage recipes"));
@@ -92,8 +88,6 @@ public class RecipeManager implements Listener {
 	}
 	
 	private void openShaped(final Player p, final int page) {
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
-		
 		//ItemBuilder.sendMessage(p, ChatColor.GOLD + "Recipe Manager", ChatColor.DARK_GREEN + "Click on a recipe to view and manage it");
 		
 		ProRecipes.getPlugin().getServer().getScheduler().runTaskLater(ProRecipes.getPlugin(), new Runnable(){
@@ -252,8 +246,6 @@ public class RecipeManager implements Listener {
 	}
 	
 	private void openFurnace(final Player p, final int page) {
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
-		
 		//ItemBuilder.sendMessage(p, ChatColor.GOLD + "Recipe Manager", ChatColor.DARK_GREEN + "Click on a recipe to view and manage it");
 		
 		ProRecipes.getPlugin().getServer().getScheduler().runTaskLater(ProRecipes.getPlugin(), new Runnable(){
@@ -413,10 +405,6 @@ public class RecipeManager implements Listener {
 
 
 	private void openShapeless(final Player p, final int page) {
-		
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
-		
-		
 		//ItemBuilder.sendMessage(p, ChatColor.GOLD + "Recipe Manager", ChatColor.DARK_GREEN + "Click on a recipe to view and manage it");
 		
 		ProRecipes.getPlugin().getServer().getScheduler().runTaskLater(ProRecipes.getPlugin(), new Runnable(){
@@ -571,10 +559,6 @@ public class RecipeManager implements Listener {
 	}
 	
 	private void openMulti(final Player p, final int page) {
-		
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
-		
-		
 		//ItemBuilder.sendMessage(p, ChatColor.GOLD + "Recipe Manager", ChatColor.DARK_GREEN + "Click on a recipe to view and manage it");
 		
 		ProRecipes.getPlugin().getServer().getScheduler().runTaskLater(ProRecipes.getPlugin(), new Runnable(){
@@ -735,7 +719,6 @@ public class RecipeManager implements Listener {
 	
 	
 	private void confirmModify(final Player p, String title, final int type){
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
 		//0 = shapeless
 		//1 = shaped
 		//2 == furnace
@@ -1350,9 +1333,6 @@ public class RecipeManager implements Listener {
 	}
 	
 	public void askPermission(final Player p, String type){
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
-		
-		
 		ItemBuilder.close(p);
 		p.setMetadata("closed", new FixedMetadataValue(ProRecipes.getPlugin(), ""));
 		ItemBuilder.sendMessage(p, m.getMessage("Recipe_Viewer_Title", ChatColor.GOLD + "Recipe Manager"),  m.getMessage("Choose_Permission", ChatColor.DARK_GREEN + "Type a permission. Type 'no' for no permission"));
@@ -1362,10 +1342,7 @@ public class RecipeManager implements Listener {
 	}
 	
 	public void openRecipeInfo(final Player p, int slot, int type){
-		
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
 		ItemBuilder.close(p);
-		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}
 		p.openWorkbench(null, true);
 		if(type == 3){
 			p.openInventory(ProRecipes.getPlugin().getRecipes().createMultiTable(p, 3));

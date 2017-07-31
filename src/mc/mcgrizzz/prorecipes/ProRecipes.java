@@ -86,7 +86,7 @@ public class ProRecipes extends JavaPlugin implements Listener{
 	public boolean title;
 	public boolean prompts;
 	public int wait;
-	boolean fastCraft, spigot, checkUpdate;
+	boolean spigot, checkUpdate;
 	
 	public Messages ms;
 	
@@ -161,9 +161,6 @@ public class ProRecipes extends JavaPlugin implements Listener{
 			}
 		}
 		
-		
-		fastCraft = false;
-		
 		ms = new Messages();
 		rec = new Recipes();
 		
@@ -174,9 +171,6 @@ public class ProRecipes extends JavaPlugin implements Listener{
 		console.sendMessage(ChatColor.DARK_GREEN + "Thank you for purchasing ProRecipes! \n" +  "Any comments or concerns message me on spigot!" + ChatColor.RESET);
 		 
 		title = getServer().getPluginManager().isPluginEnabled("TitleManager");
-		
-		
-		fastCraft = getServer().getPluginManager().isPluginEnabled("FastCraft");
 		
 		
 		
