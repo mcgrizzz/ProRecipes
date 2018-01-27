@@ -1,10 +1,5 @@
 package mc.mcgrizzz.prorecipes;
 
-import java.util.ArrayList;
-
-import com.licel.stringer.annotations.insecure;
-import com.licel.stringer.annotations.secured;
-
 public class Authentication {
 	
 	/* public static  boolean isInt(String s){

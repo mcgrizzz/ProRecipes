@@ -19,9 +19,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.licel.stringer.annotations.insecure;
-import com.licel.stringer.annotations.secured;
-
 import co.kepler.fastcraft.api.FastCraftApi;
 
 public class RecipeManager implements Listener {

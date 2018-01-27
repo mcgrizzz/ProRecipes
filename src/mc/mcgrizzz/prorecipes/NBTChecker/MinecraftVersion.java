@@ -4,6 +4,11 @@ import java.lang.reflect.Constructor;
 
 public enum MinecraftVersion {
 	
+	
+	v1_12_R1("v_1_12_R2", NBTChecker_v1_12_R1.class),
+	
+	v1_11_R1("v_1_11_R1", NBTChecker_v1_11_R1.class),
+	
 	v1_10_R1("v_1_10_R1", NBTChecker_v1_10_R1.class),
 	
 	v1_9_R2("v_1_9_R2", NBTChecker_v1_9_R2.class),

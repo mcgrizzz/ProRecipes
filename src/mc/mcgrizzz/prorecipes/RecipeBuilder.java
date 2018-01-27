@@ -2,6 +2,7 @@ package mc.mcgrizzz.prorecipes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,9 +16,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
-
-import com.licel.stringer.annotations.insecure;
-import com.licel.stringer.annotations.secured;
 
 import co.kepler.fastcraft.api.FastCraftApi;
 
@@ -189,7 +187,6 @@ public class RecipeBuilder implements Listener{
 			
 		}, ProRecipes.getPlugin().wait);
 	}
-	
 	
 	public void openChoice(final Player p) {
 		if(ProRecipes.getPlugin().fastCraft){FastCraftApi.allowCraftingInvToOpen(p);}

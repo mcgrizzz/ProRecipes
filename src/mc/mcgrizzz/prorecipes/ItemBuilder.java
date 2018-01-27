@@ -29,8 +29,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import com.licel.stringer.annotations.insecure;
-import com.licel.stringer.annotations.secured;
 
 public class ItemBuilder implements Listener{
 	

@@ -31,9 +31,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.scheduler.BukkitTask;
 
-import com.licel.stringer.annotations.insecure;
-import com.licel.stringer.annotations.secured;
-
 /**
  * <p>
  * The metrics class obtains data about a plugin and submits statistics about it to the metrics backend.

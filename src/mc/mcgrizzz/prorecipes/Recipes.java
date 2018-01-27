@@ -53,8 +53,6 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.material.Sign;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.licel.stringer.annotations.insecure;
-import com.licel.stringer.annotations.secured;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 

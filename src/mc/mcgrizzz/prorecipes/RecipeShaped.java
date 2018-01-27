@@ -12,9 +12,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.licel.stringer.annotations.insecure;
-import com.licel.stringer.annotations.secured;
-
 public class RecipeShaped extends RecipeContainer{
 	
 	String idCache = "";

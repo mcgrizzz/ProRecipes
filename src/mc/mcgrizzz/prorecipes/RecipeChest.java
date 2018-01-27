@@ -9,9 +9,6 @@ import java.util.Map;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-import com.licel.stringer.annotations.insecure;
-import com.licel.stringer.annotations.secured;
-
 public class RecipeChest {
 	
 	String idCache = "";
@@ -1172,7 +1169,7 @@ public class RecipeChest {
 	
 	/**
 	 * Copies an array removing either a column or row or both. Uses reflection, oops.
-	 * @param arr The array to copy data from. Must be rectangular!
+	 * @param arr The array to copy data from. Must be rectangular!s
 	 * @param skRow The row to skip, or -1 to skip no rows
 	 * @param skCol The col to skip, or -1 to skip no columns
 	 * @return An array missing the specified columns and rows
