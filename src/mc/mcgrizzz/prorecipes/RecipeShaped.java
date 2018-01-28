@@ -55,6 +55,7 @@ public class RecipeShaped extends RecipeContainer{
 		ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 		items.addAll(Arrays.asList(getItems()));
 		for(int b = 0; b < items.size(); b++){
+			if(items.get(b)==null)continue;
 			ItemStack t = items.get(b).clone();
 			t.setAmount(t.getAmount()-1); //need to set to minus one. 
 										  //The subtractMatric method is called after initial recipe is subtracted
