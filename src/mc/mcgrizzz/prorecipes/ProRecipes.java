@@ -45,27 +45,6 @@ import mc.mcgrizzz.prorecipes.NBTChecker.MinecraftVersion;
 
 public class ProRecipes extends JavaPlugin implements Listener{
 	
-	/**
-	 * 
-	 * WELCOME to the source of my eternal pain. I know it's not pretty, some of it's just plain lazy. I know you'll eventually forgive me. 
-	 * 
-	 * I have never had time to officially clean up the mess that is this shitty waste of my useless life. That's why I decided to
-	 * release it open source, for free. I don't have nearly as much time as I used to. This is for the best. Please submit code 
-	 * changes + optimizations etc
-	 * 
-	 * Thank you to everyone who purchased ProRecipes and left kind comments in regards to it. 
-	 * 
-	 * I know now that I will burn eternally in H.E.L.L (hairy ecstasy of lucrative lubricant) for this. 
-	 * 
-	 * 
-	 * 
-	 * P.S. I know A LOT needs improvement. Going back I would have done many things differently. This project is a result of a bet 
-	 * that I could make a plugin with more functionality and usability than the other recipe plugins out there. Then it turned into 
-	 * a passion. Then life hit me. Thus, it's messy and ugly and disgusting and I hate my baby.  This is where you guys come in. 
-	 * Fix my baby. 
-	 *  
-	 * Feel free to make whatever changes you like (without removing functionality). 
-	 */
 	
 	ArrayList<org.bukkit.inventory.Recipe> defaultRecipes = new ArrayList<org.bukkit.inventory.Recipe>();
 	
@@ -86,7 +65,7 @@ public class ProRecipes extends JavaPlugin implements Listener{
 	public boolean title;
 	public boolean prompts;
 	public int wait;
-	boolean fastCraft, spigot, checkUpdate;
+	boolean spigot, checkUpdate;
 	
 	public Messages ms;
 	
@@ -141,7 +120,7 @@ public class ProRecipes extends JavaPlugin implements Listener{
 	 	if(version != "NOPE"){
 	 		
 	 	}else{
-	 		console.sendMessage(ChatColor.DARK_RED +"[ProRecipes] UNABLE TO GET SERVER VERSION! NBTTAGS WILL NOT BE SUPPORTED!");
+	 		console.sendMessage(ChatColor.DARK_RED +"[ProRecipes] SERVER VERSION NOT SUPPORTED. SOME FEATURES MAY NOT WORK.");
 	 	}
 	 	///System.out.println(version);
 	 	mv = MinecraftVersion.fromId(version);
@@ -161,8 +140,7 @@ public class ProRecipes extends JavaPlugin implements Listener{
 			}
 		}
 		
-		
-		fastCraft = false;
+
 		
 		ms = new Messages();
 		rec = new Recipes();
@@ -174,10 +152,6 @@ public class ProRecipes extends JavaPlugin implements Listener{
 		console.sendMessage(ChatColor.DARK_GREEN + "Thank you for purchasing ProRecipes! \n" +  "Any comments or concerns message me on spigot!" + ChatColor.RESET);
 		 
 		title = getServer().getPluginManager().isPluginEnabled("TitleManager");
-		
-		
-		fastCraft = getServer().getPluginManager().isPluginEnabled("FastCraft");
-		
 		
 		
 		
@@ -213,11 +187,6 @@ public class ProRecipes extends JavaPlugin implements Listener{
 		blacklist = lowerCase;
 		
 		generateBlacklist(blacklist);
-		//removeBlacklist();
-	/*	for(String s : blacklistItems.keySet()){
-			System.out.println(s);
-			System.out.println(blacklistItems.get(s));
-		}*/
 		
 		removeBlacklist();
 		
@@ -427,6 +396,12 @@ public class ProRecipes extends JavaPlugin implements Listener{
 	}
 	
 	
+	/*
+	 * 
+	 * For debugging
+	 */
+	
+	
 	public void createFakeRecipes(){
 		
 		
@@ -469,13 +444,10 @@ public class ProRecipes extends JavaPlugin implements Listener{
 					input.add(s.next());
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			//for(String s : input){
-				//System.out.println(s);
-			//}
+			
 			int start = 0;
 			for(String s : input){
 				if(s.contains(id)){
@@ -486,7 +458,6 @@ public class ProRecipes extends JavaPlugin implements Listener{
 			
 			version = input.get(start + 1);
 	
-			
 			
 			if(compareVersion(getDescription().getVersion())){
 				if(startup)System.out.println(Ansi.ansi().fg(Ansi.Color.RED).bold().toString() + "[" + id + "] Plugin outdated. New version: " + this.version + Ansi.ansi().fg(Ansi.Color.WHITE).boldOff().toString());

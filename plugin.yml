@@ -1,7 +1,7 @@
 name: ProRecipes
 main: mc.mcgrizzz.prorecipes.ProRecipes
-version: 1.8.4
-softdepend: [TitleManager, FastCraft]
+version: 2.0.2
+softdepend: [TitleManager]
 commands:
     builditem:
         description: Build an item with a custom display name, and lore.
