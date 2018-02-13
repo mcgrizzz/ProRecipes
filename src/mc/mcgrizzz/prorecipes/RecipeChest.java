@@ -18,21 +18,11 @@ public class RecipeChest {
 	String[][] structure;
 	ItemStack[][] itemsCache;
 	String permission;
-	
-	//This is used to identify any special recipe (With armorstand as a result)
-	//ShapedRecipe registerer;
-	//ItemStack result;
+
 	
 	public RecipeChest(ItemStack[] it){
 		results = it.clone();
-	//	for(ItemStack i : results){
-		//	//System.out.println(i);
-		//}
-		//ItemStack i = new ItemStack(Material.ARMOR_STAND);
-		//ItemMeta m = i.getItemMeta();
-		//m.setDisplayName("recipedchestitem");
-		//i.setItemMeta(m);
-		//registerer = new ShapedRecipe(i);
+	
 	}
 	
 	
@@ -48,18 +38,12 @@ public class RecipeChest {
 		return permission != null && !permission.isEmpty();
 	}
 	
-	/**public ArrayList<String> getId(){
-		ArrayList<String> array = new ArrayList<String>();
-		
-		return array;
-	}*/
 	
 	public void setIngredients(HashMap<Character, ItemStack> in){
 		this.ingredients = in;
 		for(Character c : in.keySet()){
 			if(c == ' ')continue;
 			if(in.get(c).getType().equals(Material.AIR))continue;
-			//registerer.setIngredient(c, in.get(c).getData());
 		}
 	}
 	
@@ -69,9 +53,6 @@ public class RecipeChest {
 		ItemStack[][] i = new ItemStack[structure.length][structure[0].length];
 		for(int t = 0; t < i.length; t++){
 			for(int z = 0; z <i[t].length; z++){
-				/*if(structure.length < t || structure[t].length < z){
-					continue;
-				}*/
 				
 				if(structure[t][z] == null){
 					i[t][z] = new ItemStack(Material.AIR, 0);
@@ -81,19 +62,11 @@ public class RecipeChest {
 					i[t][z] = new ItemStack(Material.AIR, 0);
 					continue;
 				}
-				//////////////////System.out.println"adding something ");
-				//////////////////System.out.printlningredients.get(structure[t][z].toCharArray()[0]).getType());
 				i[t][z] = ingredients.get(structure[t][z].toCharArray()[0]);
 			}
 		}
 		
-		//////////////System.out.println"GetItems: ");
-		//////////////System.out.printlnArrays.deepToString(i));
-		
 		items = toOneD(i);
-		
-		//////////////System.out.println"After toOneD: ");
-		//////////////System.out.printlnArrays.deepToString(items));
 		return items;
 	}
 	
@@ -126,17 +99,13 @@ public class RecipeChest {
 					k[t][z] = new ItemStack(Material.AIR, 0);
 					continue;
 				}
-				//////////////////System.out.println"adding something ");
-				//////////////////System.out.printlningredients.get(structure[t][z].toCharArray()[0]).getType());
 				ItemStack it = ingredients.get(structure[t][z].toCharArray()[0]);
 				k[t][z] = it.clone();
 				i[t][z] = ProRecipes.itemToStringBlob(it);
 			}
 		}
-		//////////////////System.out.println"Getting id...");
 		idCache = Arrays.deepToString(convertToMinimizedStructure(i, ProRecipes.airString));
 		itemsCache = convertToMinimizedStructure(k);
-		////////System.out.println(idCache);
 		return idCache;
  	}
 	
@@ -155,8 +124,6 @@ public class RecipeChest {
 				if(i[t][z].getType().equals(Material.AIR)){
 					i[t][z] = new ItemStack(Material.AIR);
 				}
-				//////////////////System.out.println"adding something ");
-				//////////////////System.out.printlningredients.get(structure[t][z].toCharArray()[0]).getType());
 				b[t][z] = ProRecipes.itemToStringBlob(i[t][z]);
 			}
 		}
@@ -166,16 +133,9 @@ public class RecipeChest {
 	
 	protected static ItemStack[][] convertToArray(ItemStack[] i){
 		if(i.length / 4 == 4){
-			//////////////////System.out.printlni.length);
-			//System.out.println("Before it's converted");
-			//System.out.println(Arrays.deepToString(i));
 			ItemStack[][] arr = new ItemStack[4][4];
-			//////////////////System.out.printlnarr.length);
-			//////////////////System.out.printlnarr[0].length);
 			for(int x = 0; x < 4; x++){
-				//////////////////System.out.println"x" + x);
 				for(int z = 0; z < 4; z++){
-				//	//("z" + z);
 					if(i[x*4 + z] == null){
 						arr[x][z] = new ItemStack(Material.AIR, 0);
 						continue;
@@ -183,11 +143,8 @@ public class RecipeChest {
 					arr[x][z] = i[x*4 + z]; 
 				}
 			}
-		    //System.out.println("Converted array: ");
-			//System.out.println(Arrays.deepToString(arr));
 			return arr;
  		}else{
- 			//////////////////System.out.println"Not nine");
 			return null;
 		}
 	}
@@ -195,14 +152,6 @@ public class RecipeChest {
 	
  	
 	protected static ItemStack[][] convertToMinimizedStructure(ItemStack[][] i){
-		
-		///GO THROUGH ROWS
-		//////////System.out.println("Going through rows");
-		
-		//System.out.println("Before anything: ");
-		//System.out.println(Arrays.deepToString(i));
-		
-		
 		int x = i.length-1;
 		//Check first row
 		boolean clear = true;
@@ -216,12 +165,8 @@ public class RecipeChest {
 			}
 		}
 		if(clear){
-			//////////System.out.println("First row is clear");
 			i = copyIgnore(ItemStack.class, i, 0, -1);
 			x--;
-			
-			//System.out.println("First column\n");
-			//System.out.println(Arrays.deepToString(i));
 			
 		}
 		
@@ -238,19 +183,13 @@ public class RecipeChest {
 			}
 		}
 		if(clear){
-			//////////System.out.println("Last row is clear");
 			i = copyIgnore(ItemStack.class, i, x, -1);
 			x--;
-			
-			//System.out.println("last column  \n");
-			//System.out.println(Arrays.deepToString(i));
 		}
 		
 		//Only check middle row if one is empty
 		if((fClear || lClear) && !(fClear && lClear)){
-			//////////System.out.println("One is clear");
 			if(fClear){
-				//////////System.out.println("First is clear");
 				clear = true;
 				for(int z = 0; z < i[0].length; z++){
 					if(i[0][z] == null)continue;
@@ -261,7 +200,6 @@ public class RecipeChest {
 				}
 				//if clear check for next first column
 				if(clear){
-					//////////System.out.println("Middle(now first) is clear");
 					i = copyIgnore(ItemStack.class, i, 0, -1);
 					x--;
 					//clear
@@ -275,7 +213,6 @@ public class RecipeChest {
 					}
 					
 					if(clear){
-						//////////System.out.println("Middle(now first) is clear");
 						i = copyIgnore(ItemStack.class, i, 0, -1);
 						x--;
 						
@@ -284,7 +221,6 @@ public class RecipeChest {
 					
 				}
 			}else{
-				//////////System.out.println("Last is clear");
 				clear = true;
 				for(int z = 0; z < i[i.length-1].length; z++){
 					if(i[i.length-1][z] == null)continue;
@@ -294,7 +230,6 @@ public class RecipeChest {
 					}
 				}
 				if(clear){
-					//////////System.out.println("Middle(Now last) is clear");
 					i = copyIgnore(ItemStack.class, i, i.length-1, -1);
 					x--;
 					
@@ -307,7 +242,6 @@ public class RecipeChest {
 						}
 					}
 					if(clear){
-						//////////System.out.println("Middle(Now last) is clear");
 						i = copyIgnore(ItemStack.class, i, i.length-1, -1);
 						x--;
 						
@@ -327,7 +261,6 @@ public class RecipeChest {
 			}
 			//if clear check for next first column
 			if(clear){
-				//////////System.out.println("Middle(now first) is clear");
 				i = copyIgnore(ItemStack.class, i, 0, -1);
 				x--;
 			}else{
@@ -341,7 +274,6 @@ public class RecipeChest {
 					}
 				}
 				if(clear){
-					//////////System.out.println("Middle(Now last) is clear");
 					i = copyIgnore(ItemStack.class, i, i.length-1, -1);
 					x--;
 				}
@@ -350,7 +282,6 @@ public class RecipeChest {
 		
 		
 		//GO THROUGH COLUMNS
-		//////////System.out.println("Going through columns");
 		
 		int z = i[0].length-1;
 		//Check first row
@@ -365,7 +296,6 @@ public class RecipeChest {
 			}
 		}
 		if(clear){
-			//////////System.out.println("First is clear");
 			i = copyIgnore(ItemStack.class, i, -1, 0);
 			z--;
 			
@@ -384,39 +314,32 @@ public class RecipeChest {
 			}
 		}
 		if(clear){
-			//////////System.out.println("Last is clear");
 			i = copyIgnore(ItemStack.class, i, -1, z);
 			z--;
 		}
 		
 		//Only check middle row if one is empty
 		if((fClear || lClear) && !(fClear && lClear)){
-			//////////System.out.println("One was clear");
 			if(fClear){
-				//////////System.out.println("First was clear");
 				clear = true;
 				for(int xX = 0; xX < i.length; xX++){
 					if(i[xX][0] == null)continue;
 					if(i[xX][0] != null && !i[xX][0].getType().equals(Material.AIR)){
 						clear = false;
-						//fClear = false;
 						break;
 					}
 				}
 				if(clear){
-					//////////System.out.println("Middle now clear");
 					i = copyIgnore(ItemStack.class, i, -1, 0);
 					z--;
 					for(int xX = 0; xX < i.length; xX++){
 						if(i[xX][0] == null)continue;
 						if(i[xX][0] != null && !i[xX][0].getType().equals(Material.AIR)){
 							clear = false;
-							//fClear = false;
 							break;
 						}
 					}
 					if(clear){
-						//////////System.out.println("Middle now clear");
 						i = copyIgnore(ItemStack.class, i, -1, 0);
 						z--;
 						
@@ -425,30 +348,24 @@ public class RecipeChest {
 				}
 			}else{
 				clear = true;
-				//////////System.out.println("last was clear");
-				//lClear = true;
 				for(int xX = 0; xX < i.length; xX++){
 					if(i[xX][z] == null)continue;
 					if(i[xX][z] != null && !i[xX][z].getType().equals(Material.AIR)){
 						clear = false;
-						//lClear = false;
 						break;
 					}
 				}
 				if(clear){
-					//////////System.out.println("MIddle now clear");
 					i = copyIgnore(ItemStack.class, i, -1, z);
 					z--;
 					for(int xX = 0; xX < i.length; xX++){
 						if(i[xX][z] == null)continue;
 						if(i[xX][z] != null && !i[xX][z].getType().equals(Material.AIR)){
 							clear = false;
-							//lClear = false;
 							break;
 						}
 					}
 					if(clear){
-						//////////System.out.println("MIddle now clear");
 						i = copyIgnore(ItemStack.class, i, -1, z);
 						z--;
 					}
@@ -462,28 +379,22 @@ public class RecipeChest {
 				if(i[xX][0] == null)continue;
 				if(i[xX][0] != null && !i[xX][0].getType().equals(Material.AIR)){
 					clear = false;
-					//fClear = false;
 					break;
 				}
 			}
 			if(clear){
-				//////////System.out.println("Middle now clear");
 				i = copyIgnore(ItemStack.class, i, -1, 0);
 				z--;
 			}else{
 				clear = true;
-				//////////System.out.println("last was clear");
-				//lClear = true;
 				for(int xX = 0; xX < i.length; xX++){
 					if(i[xX][z] == null)continue;
 					if(i[xX][z] != null && !i[xX][z].getType().equals(Material.AIR)){
 						clear = false;
-						//lClear = false;
 						break;
 					}
 				}
 				if(clear){
-					//////////System.out.println("MIddle now clear");
 					i = copyIgnore(ItemStack.class, i, -1, z);
 					z--;
 					
@@ -492,116 +403,13 @@ public class RecipeChest {
 			
 		}
 		
-		
-		
-		/*for(int x = 0; x < i.length; x++){
-			
-			for(int z = 0; z < i[x].length; z++){
-				//("x:" + x + " z:" + z);
-				if(i[x][z] == null){
-					
-					//("Null");
-				}else{
-					//(i[x][z].getType());
-				}
-				
-			}
-			
-		}*/
-		
-		//////////////////System.out.println"Before anything: ");
-		//////////////////System.out.printlnArrays.deepToString(i));
-		/*******for(int x = 0; x < i.length; x++){
-			boolean clear = true;
-			for(int z = 0; z < i[x].length; z++){
-				if(i[x][z] == null)continue;
-				if(i[x][z] != null && !i[x][z].getType().equals(Material.AIR)){
-					clear = false;
-					break;
-				}
-			}
-			if(clear){
-				i = copyIgnore(ItemStack.class, i, x, -1);
-				x--;
-			}
-		}
-		
-		
-		
-		//////////////////System.out.println"After rows: ");
-		//////////////////System.out.printlnArrays.deepToString(i));
-		
-		if(i.length == 0)return i;
-		for(int z = 0; z < i[0].length; z++){
-			boolean clear = true;
-			for(int x = 0; x < i.length; x++){
-				if(i[x][z] == null)continue;
-				if(i[x][z] != null && !i[x][z].getType().equals(Material.AIR)){
-					clear = false;
-					break;
-				}
-			}
-			if(clear){
-				i = copyIgnore(ItemStack.class, i, -1, z);
-				z--;
-			}
-		}
-		
-		
-		/*for(int x = 0; x < i.length; x++){
-			
-			for(int z = 0; z < i[x].length; z++){
-				if(i[x][z] == null){
-					//("Null");
-				}else{
-					//(i[x][z].getType());
-				}
-				
-			}
-			
-		}*////////
-		//////////////System.out.println"After cols: ");
-		//////////////System.out.printlnArrays.deepToString(i));
-		//
 		return i;
 	}
 	
 	protected static String[][] convertToMinimizedStructure(String[][] i, String filter){
 		
 	
-		/**for(int x = 0; x < i.length; x++){
-			boolean clear = true;
-			for(int z = 0; z < i[x].length; z++){
-				if(i[x][z] != null && !i[x][z].equalsIgnoreCase(" ")){
-					clear = false;
-					break;
-				}
-			}
-			if(clear){
-				i = copyIgnore(String.class, i, x, -1);
-				x--;
-			}
-		}
-		if(i.length == 0)return i;
-		for(int z = 0; z < i[0].length; z++){
-			boolean clear = true;
-			for(int x = 0; x < i.length; x++){
-				if(i[x][z] != null && !i[x][z].equalsIgnoreCase(" ")){
-					clear = false;
-					break;
-				}
-			}
-			if(clear){
-				i = copyIgnore(String.class, i, -1, z);
-				z--;
-			}
-		}
-		return i;*/
-		
-		///GO THROUGH ROWS
-				//////////System.out.println("Going through rows");
 				int x = i.length-1;
-				//Check first row
 				boolean clear = true;
 				boolean fClear = true;
 				for(int z = 0; z < i[0].length; z++){
@@ -613,7 +421,6 @@ public class RecipeChest {
 					}
 				}
 				if(clear){
-					//////////System.out.println("First row is clear");
 					i = copyIgnore(String.class, i, 0, -1);
 					x--;
 					
@@ -632,16 +439,13 @@ public class RecipeChest {
 					}
 				}
 				if(clear){
-					//////////System.out.println("Last row is clear");
 					i = copyIgnore(String.class, i, x, -1);
 					x--;
 				}
 				
 				//Only check middle row if one is empty
 				if((fClear || lClear) && !(fClear && lClear)){
-					//////////System.out.println("One is clear");
 					if(fClear){
-						//////////System.out.println("First is clear");
 						clear = true;
 						for(int z = 0; z < i[0].length; z++){
 							if(i[0][z] == null)continue;
@@ -652,7 +456,6 @@ public class RecipeChest {
 						}
 						//if clear check for next first column
 						if(clear){
-							//////////System.out.println("Middle(now first) is clear");
 							i = copyIgnore(String.class, i, 0, -1);
 							x--;
 							//clear
@@ -666,7 +469,6 @@ public class RecipeChest {
 							}
 							
 							if(clear){
-								//////////System.out.println("Middle(now first) is clear");
 								i = copyIgnore(String.class, i, 0, -1);
 								x--;
 								
@@ -675,7 +477,6 @@ public class RecipeChest {
 							
 						}
 					}else{
-						//////////System.out.println("Last is clear");
 						clear = true;
 						for(int z = 0; z < i[i.length-1].length; z++){
 							if(i[i.length-1][z] == null)continue;
@@ -685,7 +486,6 @@ public class RecipeChest {
 							}
 						}
 						if(clear){
-							//////////System.out.println("Middle(Now last) is clear");
 							i = copyIgnore(String.class, i, i.length-1, -1);
 							x--;
 							
@@ -698,7 +498,6 @@ public class RecipeChest {
 								}
 							}
 							if(clear){
-								//////////System.out.println("Middle(Now last) is clear");
 								i = copyIgnore(String.class, i, i.length-1, -1);
 								x--;
 								
@@ -718,7 +517,6 @@ public class RecipeChest {
 					}
 					//if clear check for next first column
 					if(clear){
-						//////////System.out.println("Middle(now first) is clear");
 						i = copyIgnore(String.class, i, 0, -1);
 						x--;
 					}else{
@@ -732,7 +530,6 @@ public class RecipeChest {
 							}
 						}
 						if(clear){
-							//////////System.out.println("Middle(Now last) is clear");
 							i = copyIgnore(String.class, i, i.length-1, -1);
 							x--;
 						}
@@ -741,7 +538,6 @@ public class RecipeChest {
 				
 				
 				//GO THROUGH COLUMNS
-				//////////System.out.println("Going through columns");
 				
 				int z = i[0].length-1;
 				//Check first row
@@ -756,7 +552,6 @@ public class RecipeChest {
 					}
 				}
 				if(clear){
-					//////////System.out.println("First is clear");
 					i = copyIgnore(String.class, i, -1, 0);
 					z--;
 					
@@ -775,39 +570,32 @@ public class RecipeChest {
 					}
 				}
 				if(clear){
-					//////////System.out.println("Last is clear");
 					i = copyIgnore(String.class, i, -1, z);
 					z--;
 				}
 				
 				//Only check middle row if one is empty
 				if((fClear || lClear) && !(fClear && lClear)){
-					//////////System.out.println("One was clear");
 					if(fClear){
-						//////////System.out.println("First was clear");
 						clear = true;
 						for(int xX = 0; xX < i.length; xX++){
 							if(i[xX][0] == null)continue;
 							if(i[xX][0] != null && !i[xX][0].isEmpty() && !i[xX][0].equals(filter)){
 								clear = false;
-								//fClear = false;
 								break;
 							}
 						}
 						if(clear){
-							//////////System.out.println("Middle now clear");
 							i = copyIgnore(String.class, i, -1, 0);
 							z--;
 							for(int xX = 0; xX < i.length; xX++){
 								if(i[xX][0] == null)continue;
 								if(i[xX][0] != null && !i[xX][0].isEmpty() && !i[xX][0].equals(filter)){
 									clear = false;
-									//fClear = false;
 									break;
 								}
 							}
 							if(clear){
-								//////////System.out.println("Middle now clear");
 								i = copyIgnore(String.class, i, -1, 0);
 								z--;
 								
@@ -816,30 +604,24 @@ public class RecipeChest {
 						}
 					}else{
 						clear = true;
-						//////////System.out.println("last was clear");
-						//lClear = true;
 						for(int xX = 0; xX < i.length; xX++){
 							if(i[xX][z] == null)continue;
 							if(i[xX][z] != null && !i[xX][z].isEmpty() && !i[xX][z].equals(filter)){
 								clear = false;
-								//lClear = false;
 								break;
 							}
 						}
 						if(clear){
-							//////////System.out.println("MIddle now clear");
 							i = copyIgnore(String.class, i, -1, z);
 							z--;
 							for(int xX = 0; xX < i.length; xX++){
 								if(i[xX][z] == null)continue;
 								if(i[xX][z] != null && !i[xX][z].isEmpty() && !i[xX][z].equals(filter)){
 									clear = false;
-									//lClear = false;
 									break;
 								}
 							}
 							if(clear){
-								//////////System.out.println("MIddle now clear");
 								i = copyIgnore(String.class, i, -1, z);
 								z--;
 							}
@@ -853,28 +635,22 @@ public class RecipeChest {
 						if(i[xX][0] == null)continue;
 						if(i[xX][0] != null && !i[xX][0].isEmpty() && !i[xX][0].equals(filter)){
 							clear = false;
-							//fClear = false;
 							break;
 						}
 					}
 					if(clear){
-						//////////System.out.println("Middle now clear");
 						i = copyIgnore(String.class, i, -1, 0);
 						z--;
 					}else{
 						clear = true;
-						//////////System.out.println("last was clear");
-						//lClear = true;
 						for(int xX = 0; xX < i.length; xX++){
 							if(i[xX][z] == null)continue;
 							if(i[xX][z] != null && !i[xX][z].isEmpty() && !i[xX][z].equals(filter)){
 								clear = false;
-								//lClear = false;
 								break;
 							}
 						}
 						if(clear){
-							//////////System.out.println("MIddle now clear");
 							i = copyIgnore(String.class, i, -1, z);
 							z--;
 						}
@@ -890,37 +666,23 @@ public class RecipeChest {
 	
 	
 	protected static Pair<String[][], HashMap<Character, ItemStack>> getStructure(ItemStack[][] i){
-		//("Before 'getStructure':");
-		//(Arrays.deepToString(i));
 		Character[] chars = {'a','b','c','d','e','f','g','h','i', 'j','k','l', 'm', 'n', 'o', 'p'};
 		ItemStack[][] min = convertToMinimizedStructure(i);
-		//(Arrays.deepToString(min));
-		//if(min.length == 0)return null;
 		String[][] st = new String[min.length][min[0].length];
 		HashMap<Character, ItemStack> keys = new HashMap<Character, ItemStack>();
 		for(int x = 0; x < min.length; x++){
 			for(int z = 0; z < min[x].length; z++){
 					Character b = chars[keys.keySet().size()];
-					
-					/**if(i[x][z].getType().equals(Material.AIR) || i[x][z] == null){
-						st[x][z] = " ";
-						
-					}*/
-					
 					st[x][z] = b.toString();
 					keys.put(b, min[x][z]);
 				}
 			}
 		
-		//////////////System.out.println"After 'getStructure':");
-		//////////////System.out.printlnArrays.deepToString(st));
 		return new Pair<String[][], HashMap<Character, ItemStack>>(st, keys);
 	}
 	
 	public String[] toOneD(String[][] s){
-		//////////////System.out.printlnArrays.deepToString(s));
 		String[] nS = new String[s.length];
-		//String[] b = new String[9];
 		for(int x = 0; x < s.length; x++){
 			String t = "";
 			if(s[x]== null){
@@ -933,50 +695,14 @@ public class RecipeChest {
 						t += s[x][z];
 					}
 					
-					//////////////System.out.println"Value: " + s[x][z]);
-				
-				//i.add(s[x][z]);
 			}
 			nS[x] = t;
 		}
 		
-		//////System.out.println(Arrays.deepToString(nS));
-		
-		/*for(int i = 0; i < s.length; i++){
-			if(s[i].length >=3){
-				if(s[i][0].isEmpty()){
-					s[i][0] = " ";
-				}else if(s[i][1].isEmpty()){
-					s[i][1] = " ";
-				}else if(s[i][2].isEmpty()){
-					s[i][2] = " ";
-				}
-				nS[i] = s[i][0] + s[i][1] + s[i][2];
-				//////////////System.out.println"more than three");
-				//////////////System.out.printlnnS[i]);
-			}else{
-				//////////////System.out.println"less than three");
-				String t = "";
-				for(int c = 0; c < s[i].length; c++){
-					if(s[i][c].isEmpty()){
-						s[i][c] = " ";
-					}
-						t += s[i][c];
-					//////////////System.out.printlns[i][c] + "T");
-				}
-				nS[i] = t;
-				//////////////System.out.printlnnS[i]);
-			}
-			
-		}*/
-		//////////////System.out.println"Final Shape:");
-		//////////////System.out.printlnArrays.deepToString(nS));
-		//////////////////System.out.printlnnS);
 		return nS;
  	}
 	
 	public ItemStack[] toOneD(ItemStack[][] s){
-		//ArrayList<ItemStack> i = new ArrayList<ItemStack>();
 		ItemStack[] items = new ItemStack[16];
 		for(int x = 0; x < 4; x++){
 			for(int z = 0; z < 4; z++){
@@ -985,7 +711,6 @@ public class RecipeChest {
 				}else{
 					items[x*4 + z] = s[x][z];
 				}
-				//i.add(s[x][z]);
 			}
 		}
 		
@@ -995,24 +720,19 @@ public class RecipeChest {
 	
 	public void setStructure(String[][] s){
 		this.structure = s;
-		//////////////System.out.println"setStructure");
-		//registerer.shape(toOneD(s));
 	}
 	
 	public void setIngredient(ItemStack it, Character i){
 		
 		if(it.getType() != Material.AIR){
 			ingredients.put(i, it);
-			//registerer.setIngredient(i, it.getData());
 		}
-		//Adds an ingredient(Itemstack) as well as how many of that ingredient
 		
 	}
 	
 	public boolean matchMaps(Map<Character, ItemStack> a, Map<Character, ItemStack> b){
 		boolean match = true;
 		
-		//Go through first replace Material.AIR with null
 		ArrayList<Character> setAir = new ArrayList<Character>();
 		a.remove(" ");
 		b.remove(" ");
@@ -1040,18 +760,12 @@ public class RecipeChest {
 		ArrayList<String> aS = new ArrayList<String>();
 		ArrayList<String> bS = new ArrayList<String>();
 		
-		
-		
-		////////System.out.println("AAAAAAAAAAAA");
 		for(java.util.Map.Entry<Character, ItemStack> e : a.entrySet()){
 			String item = e.getValue() != null ? ProRecipes.itemToStringBlob(e.getValue()) : "null";
-			////////System.out.println(e.getKey().toString() + " " + item);
 			aS.add(e.getKey().toString() + " " + item);
 		}
-		////////System.out.println("\nBBBBBBBBBBBBBBBBBBBBB");
 		for(java.util.Map.Entry<Character, ItemStack> e : b.entrySet()){
 			String item = e.getValue() != null ? ProRecipes.itemToStringBlob(e.getValue()) : "null";
-			////////System.out.println(e.getKey().toString() + " " + item);
 			bS.add(e.getKey().toString() + " " + item);
 		}
 		
@@ -1099,14 +813,10 @@ public class RecipeChest {
 		if(!match(i)){
 			ItemStack[][] passItems = convertToMinimizedStructure(i.itemsCache);
 			ItemStack[][] meItems = convertToMinimizedStructure(itemsCache);
-			////System.out.println("Does not match");
 			if(passItems.length != meItems.length){
-				//System.out.println("FALSE 1");
 				return false;
 			}
 			if(passItems[0].length != meItems[0].length){
-				//System.out.println("FALSE 2");
-				////System.out.println("Second length is not the same");
 				return false;
 			}
 			for(int x = 0; x < passItems.length; x++){
@@ -1117,22 +827,16 @@ public class RecipeChest {
 						if(compare == null || compare.getType().equals(Material.AIR)){
 							continue;
 						}else{
-							////System.out.println("Not both air!");
-							//System.out.println("FALSE 3");
 							return false;
 						}
 					}
 					if(compare.getAmount()  >= orig.getAmount()){
-						////System.out.println("Not enough!");
 						System.out.println(ProRecipes.itemToStringBlob(compare));
 						System.out.println(ProRecipes.itemToStringBlob(orig));
-						//System.out.println("FALSE 4");
 						return false;
 					}
 					compare.setAmount(orig.getAmount());
 					if(!ProRecipes.itemToStringBlob(compare).equals(ProRecipes.itemToStringBlob(orig))){
-						////System.out.println("Not the same amount");
-						//System.out.println("FALSE 5");
 						return false;
 					}
 				}
@@ -1146,12 +850,8 @@ public class RecipeChest {
 	
 	//Is this the same recipe as the passed recipe
 	public boolean match(ItemStack[][] i){
-		////System.out.println("Matching default!");
-		//////////////////System.out.println"MAtch array");
 		String a = getId().replaceAll("\\[", "").replaceAll("\\]","").replaceAll("\\{", "").replaceAll("\\}","").replaceAll(" =null, ", "").replaceAll(",  =null", "");
 		String b = getId(i).replaceAll("\\[", "").replaceAll("\\]","").replaceAll("\\{", "").replaceAll("\\}","").replaceAll(" =null, ", "").replaceAll(",  =null", "");
-		//System.out.println("Recipe id: "+ a);
-		//System.out.println("Matching id: " + b);
 		return a.equalsIgnoreCase(b);
 	}
 	
@@ -1162,8 +862,7 @@ public class RecipeChest {
 		}
 		
 		String b = p.getId().replaceAll("\\[", "").replaceAll("\\]","").replaceAll("\\{", "").replaceAll("\\}","").replaceAll(" =null, ", "").replaceAll(",  =null", "");
-		//System.out.println("\n + ONE: \n" + a);
-		//System.out.println("\n + TWO: \n" + b);
+		
 		return a.equalsIgnoreCase(b);
 	}
 	

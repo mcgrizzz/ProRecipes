@@ -57,10 +57,7 @@ public class RecipeShapeless extends RecipeContainer{
 		int i = 0;
 		for(ItemStack t : items){
 			i += (t != null ? t.getAmount() : 0);
-			//System.out.println(t.toString());
 		}
-	//	System.out.println(i);
-		//System.out.println(getId());
 		return i;
 		
 	}
@@ -86,7 +83,6 @@ public class RecipeShapeless extends RecipeContainer{
 		for(int i = 0; i < items.size(); i++){
 			if(items.get(i).equals(it)){
 				items.remove(i);
-				//System.out.println("REMOVEED IT");
 				return;
 			}
 		}
@@ -97,63 +93,23 @@ public class RecipeShapeless extends RecipeContainer{
 			return;
 		}
 		if(items.size() == 9){
-			//System.out.println("ERROR: RECIPE HAS NINE INGREDIENTS, NOT ADDING 10th!!!!");
 			return;
 		}
-		//boolean contains = false;
-		//int pairs = -1;
 		
-		//Go through to check if the ingredient is already present
-		/*for(ItemStack i : items){
-			
-			ItemStack test = i.clone();
-			ItemStack tt = it.clone();
-			
-			if(test.isSimilar(tt)){
-				contains = true;
-				pairs = items.indexOf(i);
-			}
-		}*/
-		
-		//Ingredient already present --> Just add one to the amount of ingredient
-		/*if(contains){
-			
-				
-				//registerer.removeIngredient(it.getData(), 1);
-			ItemStack i = items.get(pairs).clone();
-			i.setAmount(i.getAmount() + it.getAmount());
-			items.remove(pairs);
-			items.add(i);
-		}else{
-			//Otherwise add just one
-		
-			//registerer.addIngredient(it.getData());
-			 **/
-			items.add(it.clone());
+		items.add(it.clone());
 		
 	}
 	
-	
-	/*public void addIngredient(ItemStack it, int i){
-		//Adds an ingredient(Itemstack) as well as how many of that ingredient
-		for(int n = 0; n < i; n++){
-			addIngredient(it);
-		}
-	}*/
 
 	
 	public boolean register(){
 		
 		for(ItemStack i : items){
-			//System.out.println(i.toString());
 			registerer.addIngredient(i.getData());
-			//registerer.addIngredient(i.getData());
 		}
 		
 		for(RecipeShapeless rec : ProRecipes.getPlugin().rec.shapeless){
 			if(ingredientCheckDuplicate(rec.getItems(), getItems())){
-				//System.out.println("ERROR-SHAPELESS CREATION: Tried to add recipe with same ingredients of another recipe. "
-					//	+ "You can't have multiple recipes for the same ingredients!");
 				return false;
 				
 			}
@@ -166,17 +122,13 @@ public class RecipeShapeless extends RecipeContainer{
             recipe = it.next();
             if (recipe != null && recipe instanceof ShapelessRecipe)
             {
-            	////////////System.out.println"is shaped");
             	ShapelessRecipe b = (ShapelessRecipe)recipe;
             	if(ingredientCheck(b.getIngredientList(), registerer.getIngredientList())){
-            		//System.out.println("Adding conflict.");
             		ProRecipes.getPlugin().getRecipes().addConflict(this, b);
             	}
             }else if(recipe != null && recipe instanceof ShapedRecipe){
             	ShapedRecipe b = (ShapedRecipe)recipe;
             	if(ingredientCheck(registerer.getIngredientList(), b.getIngredientMap())){
-            		//System.out.println("Ingredients are the same, adding to doubles");
-            		//System.out.println(b.getIngredientMap().toString());
             		ProRecipes.getPlugin().getRecipes().doubles.add(b);
             	}
             }
@@ -199,7 +151,6 @@ public class RecipeShapeless extends RecipeContainer{
             
             	 if (recipe != null && recipe instanceof ShapelessRecipe)
                  {
-                 	////////////System.out.println"is shaped");
                  	ShapelessRecipe b = (ShapelessRecipe)recipe;
                  	if(ingredientCheck(b.getIngredientList(), registerer.getIngredientList())){
                  		it.remove();
@@ -228,20 +179,17 @@ public class RecipeShapeless extends RecipeContainer{
 	
 	public boolean ingredientCheck(List<ItemStack> c, Map<Character, ItemStack> b){
 		for(ItemStack t : c){
-			//System.out.println("List of itemstacks : " + (t == null ? "air" : t.toString()));
 			if(!b.containsValue(t)){
 				return false;
 			}
 		}
 		
 		for(ItemStack t : b.values()){
-			//System.out.println("List from shaped : " + (t == null ? "air" : t.toString()));
 			if(!c.contains(t)){
 				
 				return false;
 			}
 		}
-		//System.out.println("\n\n\n\n");
 		return true;
 	}
 	
@@ -269,14 +217,6 @@ public class RecipeShapeless extends RecipeContainer{
 				ab.put(n, amount);
 			}
 		}
-		
-		//for(ItemStack i : ac.keySet()){
-		////	System.out.println("A" + i + ":" + ac.get(i));	
-		//}
-		
-		//for(ItemStack i : ab.keySet()){
-	//		System.out.println("B" + i + ":" + ab.get(i));	
-	//	}
 		
 		
 		for(ItemStack i : ac.keySet()){
@@ -319,11 +259,8 @@ public class RecipeShapeless extends RecipeContainer{
 			}
 			if(t){
 				ints.remove(new Integer(checked));
-				//System.out.println("Subtract 1");
-				//System.out.println("Subtracting " + i[b].toString() +  " - " + items.get(checked).toString() );
 				test.setAmount(i[b].getAmount() - items.get(checked).getAmount());
 				i[b] = test.clone();
-				//System.out.println("Test amount: " + test.getAmount());
 			}
 		}
 		
@@ -333,18 +270,10 @@ public class RecipeShapeless extends RecipeContainer{
 	
 	
 	public boolean matchLowest(RecipeShapeless recipe){
-		//System.out.println("Matchng a recipe");
 		if(!match(recipe)){
-			//System.out.println("Doesn't match checking lowest..");
-			//if(recipe.items.size() != items.size()){
-				
-			//	return false;
-			//}
 			
 			ArrayList<ItemStack> tt = new ArrayList<ItemStack>();
 			tt.addAll(recipe.items);
-			
-			//System.out.println("Size: " + tt.size());
 			
 			boolean contains = false;
 			for(ItemStack i : items){
@@ -356,8 +285,7 @@ public class RecipeShapeless extends RecipeContainer{
 					ItemStack in = p.clone();
 					out.setAmount(1);
 					in.setAmount(1);
-					//System.out.println("from in game: " + p.toString() + " \n");
-					//System.out.println("recipe to be checked with: " + i.toString() + " \n" );
+					
 					if(in.isSimilar(out)){
 						if(i.getAmount() <= p.getAmount()){
 							contains = true;
@@ -365,24 +293,18 @@ public class RecipeShapeless extends RecipeContainer{
 							break;
 						}else{
 							contains = false;
-							//System.out.println("No contain");
 							return false;
 						}
-					}else{
-						//System.out.println("Not Similar");
 					}
 				}
 				tt.remove(latest);
 				
 				if(!contains){
-					//System.out.println("Does not contain");
 					return false;
 				}
 			}
-			//System.out.println(contains);
 			return contains;
 		}else{
-			//System.out.println("Retrun true;");
 			return true;
 		}
 	}
