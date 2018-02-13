@@ -153,7 +153,8 @@ public class RecipeShapeless extends RecipeContainer{
                  {
                  	ShapelessRecipe b = (ShapelessRecipe)recipe;
                  	if(ingredientCheck(b.getIngredientList(), registerer.getIngredientList())){
-                 		it.remove();
+                 		//it.remove();
+                 		ProRecipes.getPlugin().mv.getChecker().removeRecipe(it, b);
                  	}
                  }
             	

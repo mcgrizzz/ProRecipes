@@ -735,7 +735,8 @@ public class RecipeShaped extends RecipeContainer{
                
                  	if(matchMaps(b.getIngredientMap(), registerer.getIngredientMap())){
                  		if(Arrays.deepEquals(b.getShape(), registerer.getShape())){
-                 			it.remove();
+                 			//it.remove();
+                 			ProRecipes.getPlugin().mv.getChecker().removeRecipe(it, b);
                  		}
                  	}
                  }

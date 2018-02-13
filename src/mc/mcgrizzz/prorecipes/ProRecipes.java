@@ -503,7 +503,7 @@ public class ProRecipes extends JavaPlugin implements Listener{
 		ms.saveMessages();
 	}
 	
-	protected static ProRecipes getPlugin(){
+	public static ProRecipes getPlugin(){
 		return me;
 	}
 	

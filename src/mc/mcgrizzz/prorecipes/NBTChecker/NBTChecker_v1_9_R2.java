@@ -3,10 +3,12 @@ package mc.mcgrizzz.prorecipes.NBTChecker;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.bukkit.craftbukkit.v1_9_R2.inventory.CraftItemStack;
+import org.bukkit.inventory.Recipe;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 import net.minecraft.server.v1_9_R2.ItemStack;
@@ -97,6 +99,11 @@ public class NBTChecker_v1_9_R2 implements NBTChecker{
 		tag.setString(key, value);
 		nmsStack.setTag(tag);
 		return CraftItemStack.asBukkitCopy(nmsStack);
+	}
+	
+	@Override
+	public void removeRecipe(Iterator<Recipe> it, Recipe recipe) {
+		it.remove();
 	}
 
 }

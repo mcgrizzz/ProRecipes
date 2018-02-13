@@ -47,9 +47,6 @@ public class RecipeFurnace extends RecipeContainer{
 	
 	
 	public boolean register(){
-		
-		
-		
 		Iterator<org.bukkit.inventory.Recipe> it = ProRecipes.getPlugin().defaultRecipes.iterator();
 		org.bukkit.inventory.Recipe recipe;
         while(it.hasNext())
@@ -65,7 +62,6 @@ public class RecipeFurnace extends RecipeContainer{
             	
             }
         }
-		//This is the Recipes.class(only have one instance of this class) 
 		boolean b = ProRecipes.getPlugin().getRecipes().addFurnace(this);
 		ProRecipes.getPlugin().getServer().addRecipe(register);
 		return b;
@@ -81,19 +77,13 @@ public class RecipeFurnace extends RecipeContainer{
 	
 	
 	public boolean match(ItemStack input){
-		//System.out.println(input.toString());
-		//System.out.println(toBurn.toString());
 		if(input.getAmount() < getSubtractAmount()){
-			//System.out.println("Less than");
 			return false;
 		}
 		ItemStack i = input.clone();
 		i.setAmount(1);
 		ItemStack compare = toBurn.clone();
 		compare.setAmount(1);
-		//System.out.println("\n");
-		//System.out.println(i.toString());
-		//System.out.println(compare.toString());
 		return ProRecipes.itemToStringBlob(i).equals(ProRecipes.itemToStringBlob(compare));
 	}
 
@@ -106,7 +96,6 @@ public class RecipeFurnace extends RecipeContainer{
 	public ItemStack[] getMatrixView() {
 		ItemStack[] arr = new ItemStack[9];
 		arr[4] = toBurn.clone();
-		// TODO Auto-generated method stub
 		return arr;
 	}
 	

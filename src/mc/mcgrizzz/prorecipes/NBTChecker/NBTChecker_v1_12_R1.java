@@ -3,12 +3,16 @@ package mc.mcgrizzz.prorecipes.NBTChecker;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
+import org.bukkit.inventory.Recipe;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
+import mc.mcgrizzz.prorecipes.ProRecipes;
 import net.minecraft.server.v1_12_R1.ItemStack;
 import net.minecraft.server.v1_12_R1.NBTCompressedStreamTools;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
@@ -97,6 +101,29 @@ public class NBTChecker_v1_12_R1 implements NBTChecker{
 		tag.setString(key, value);
 		nmsStack.setTag(tag);
 		return CraftItemStack.asBukkitCopy(nmsStack);
+	}
+	
+	/*
+	 * 
+	 * (non-Javadoc)
+	 * @see mc.mcgrizzz.prorecipes.NBTChecker.NBTChecker#removeRecipe(java.util.Iterator, org.bukkit.inventory.Recipe)
+	 * 
+	 * Really hacky way of doing this. Not tested yet. In new versions of spigot there will hopefully be official ways to remove a recipe. 
+	 */
+	
+	@Override
+	public void removeRecipe(Iterator<Recipe> it, Recipe recipe) {
+		Iterator<Recipe> recipes = ProRecipes.getPlugin().getServer().recipeIterator();
+		HashSet<Recipe> storedRecipes = new HashSet<Recipe>();
+		while(recipes.hasNext()){
+			storedRecipes.add(recipes.next());
+		}
+		storedRecipes.remove(recipe);
+		ProRecipes.getPlugin().getServer().clearRecipes();
+		for(Recipe rec : storedRecipes){
+			ProRecipes.getPlugin().getServer().addRecipe(rec);
+		}
+		
 	}
 
 }
