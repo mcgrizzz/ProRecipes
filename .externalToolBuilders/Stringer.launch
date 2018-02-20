@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.licel.stringer.StringerBuilderLaunchConfigurationType">
+<booleanAttribute key="checkCaller" value="true"/>
+<booleanAttribute key="editedByExternalToolsMainTab" value="true"/>
+<stringAttribute key="excludes" value=""/>
+<stringAttribute key="includes" value=""/>
+<booleanAttribute key="integrityProtection" value="true"/>
+<stringAttribute key="licenseFile" value="C:\Users\Andrew\stringer.licel"/>
+<stringAttribute key="lineSeparator" value="&#13;&#10;"/>
+<booleanAttribute key="optimize" value="true"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/ProRecipes"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="false"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="ProRecipes"/>
+<stringAttribute key="org.eclipse.ui.externaltools.ATTR_RUN_BUILD_KINDS" value="full"/>
+<booleanAttribute key="org.eclipse.ui.externaltools.ATTR_TRIGGERS_CONFIGURED" value="true"/>
+<booleanAttribute key="osgiCompatibility" value="false"/>
+<booleanAttribute key="verbose" value="false"/>
+</launchConfiguration>
