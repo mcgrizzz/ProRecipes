@@ -13,7 +13,7 @@ Now Open Source.
 	 * 
 	 * 
 	 * P.S. I know A LOT needs improvement. Going back I would have done many things differently (such as creating a better 
-	 * project structure). I made this plugin because I felt the current recipe plugins were lacking in functionality and usability. 
+	 * project structure, or removing the massive amounts of redundancy). I made this plugin because I felt the current recipe plugins were lacking in functionality and usability. 
 	 *  
 	 * Feel free to make whatever changes you like (without removing functionality).
 	 * 
