@@ -144,7 +144,7 @@ public class RecipeShapeless extends RecipeContainer{
 	
 	public void unregister(){
 		Iterator<org.bukkit.inventory.Recipe> it = ProRecipes.getPlugin().getServer().recipeIterator();
-		org.bukkit.inventory.Recipe recipe;
+		org.bukkit.inventory.Recipe recipe = null;
         while(it.hasNext())
         {
             recipe = it.next();
@@ -154,12 +154,18 @@ public class RecipeShapeless extends RecipeContainer{
                  	ShapelessRecipe b = (ShapelessRecipe)recipe;
                  	if(ingredientCheck(b.getIngredientList(), registerer.getIngredientList())){
                  		//it.remove();
-                 		ProRecipes.getPlugin().mv.getChecker().removeRecipe(it, b);
+                 		break;
                  	}
+                 	
                  }
-            	
-            
+            	 recipe = null;
+            	 
         }
+        
+        if(recipe != null){
+        	 ProRecipes.getPlugin().mv.getChecker().removeRecipe(it, ((ShapelessRecipe)recipe));
+        }
+       
 	}
 	
 	public boolean ingredientCheck(List<ItemStack> c, List<ItemStack> b){

@@ -10,6 +10,7 @@ import java.util.Map;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class RecipeShaped extends RecipeContainer{
@@ -723,7 +724,7 @@ public class RecipeShaped extends RecipeContainer{
 	
 	public void unregister(){
 		Iterator<org.bukkit.inventory.Recipe> it = ProRecipes.getPlugin().getServer().recipeIterator();
-		org.bukkit.inventory.Recipe recipe;
+		org.bukkit.inventory.Recipe recipe = null;
         while(it.hasNext())
         {
             recipe = it.next();
@@ -736,13 +737,18 @@ public class RecipeShaped extends RecipeContainer{
                  	if(matchMaps(b.getIngredientMap(), registerer.getIngredientMap())){
                  		if(Arrays.deepEquals(b.getShape(), registerer.getShape())){
                  			//it.remove();
-                 			ProRecipes.getPlugin().mv.getChecker().removeRecipe(it, b);
+                 			break;
                  		}
                  	}
+                 	
                  }
-            	
+                 recipe = null;
             }
         }
+        
+        if(recipe != null){
+        	ProRecipes.getPlugin().mv.getChecker().removeRecipe(it, ((ShapedRecipe)recipe));
+       }
 	}
 	
 	//Is this the same recipe as the passed recipe
