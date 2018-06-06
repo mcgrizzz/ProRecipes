@@ -10,6 +10,7 @@ pipeline {
                 sh '''
                 echo "PATH = ${PATH}"
                 echo "M2_HOME = ${M2_HOME}"
+                mvn -Dmaven.repo.local=$HOME/andrew/.m2/repository clean install
                 '''
             }
         }
