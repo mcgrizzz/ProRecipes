@@ -43,6 +43,8 @@ public class RecipeManager implements Listener {
 		}
 		
 		
+		
+		
 		ProRecipes.getPlugin().getServer().getScheduler().runTaskLater(ProRecipes.getPlugin(), new Runnable(){
 
 			@Override
@@ -54,23 +56,23 @@ public class RecipeManager implements Listener {
 				ItemStack addLore = new ItemStack(Material.BRICK);
 				ItemMeta m = addLore.getItemMeta();
 				
-				m.setDisplayName(ChatColor.GOLD + "Shaped");
+				m.setDisplayName(ChatColor.GOLD + "Shaped (" + ProRecipes.getPlugin().getRecipes().shaped.size() + ")");
 				addLore.setItemMeta(m);
 				
 				ItemStack takeLore = new ItemStack(Material.GLOWSTONE_DUST);
 				m = takeLore.getItemMeta();
-				m.setDisplayName(ChatColor.RED + "Shapeless");
+				m.setDisplayName(ChatColor.RED + "Shapeless (" + ProRecipes.getPlugin().getRecipes().shapeless.size() + ")");
 				takeLore.setItemMeta(m);
 				
 				
 				ItemStack takeLoree = new ItemStack(Material.COAL);
 				m = takeLoree.getItemMeta();
-				m.setDisplayName(ChatColor.DARK_PURPLE + "Furnace");
+				m.setDisplayName(ChatColor.DARK_PURPLE + "Furnace (" + ProRecipes.getPlugin().getRecipes().fur.size() + ")");
 				takeLoree.setItemMeta(m);
 				
 				ItemStack takeLoreee = new ItemStack(Material.WORKBENCH);
 				m = takeLoree.getItemMeta();
-				m.setDisplayName(ChatColor.DARK_GREEN + "Multi-Craft");
+				m.setDisplayName(ChatColor.DARK_GREEN + "Multi-Craft (" + ProRecipes.getPlugin().getRecipes().chest.size() + ")");
 				takeLoreee.setItemMeta(m);
 				
 				p.getOpenInventory().setItem(4, takeLore);
