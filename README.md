@@ -1,6 +1,8 @@
 ![ProRecipes Banner](https://proxy.spigotmc.org/3b2198b65d3286658db78fce65f93d280428f90e?url=https://www.dropbox.com/s/2z0yhk0ap8qyw4u/Header.png?raw=1)
 
-# ProRecipes | ![Jenkins](http://ci.drepic.xyz/job/ProRecipes/job/master/badge/icon) ![JavaDocs](https://javadoc.io/badge/dummy/dummy/1.0.0.svg?color=blue) 
+# ProRecipes | [![Jenkins](http://ci.drepic.xyz/job/ProRecipes/job/master/badge/icon)](http://ci.drepic.xyz/blue/organizations/jenkins/ProRecipes/activity) [![JavaDocs](https://javadoc.io/badge/dummy/dummy/1.0.0.svg?color=blue)](http://mcgrizzz.github.io/ProRecipesDocs/index.html?mc/mcgrizzz/prorecipes/RecipeAPI.html)
+
+
 
 
 An advanced, yet easy to use, system to create items, create recipes and manage recipes. Create infinite possibilities for your server, release your creativity.
