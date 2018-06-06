@@ -6,7 +6,7 @@
   <repositories>
     <repository>
         <id>local</id>
-        <url>/home/andrew/.m2/repository</url>
+        <url>file://${basedir}/repository</url>
     </repository>
 </repositories>
 
