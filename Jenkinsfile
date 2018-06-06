@@ -16,7 +16,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'mvn install -o'
+                sh 'mvn install -o -e'
             }
         }
       stage('Artifact') {
