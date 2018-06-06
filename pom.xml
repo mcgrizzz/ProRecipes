@@ -44,7 +44,7 @@
     </dependency>
     <dependency>
            <groupId>org.spigotmc</groupId>
-           <artifactId>spigot-1.10</artifactId>
+           <artifactId>spigot-1.10.2</artifactId>
            <version>1.10.2-R0.1-SNAPSHOT</version>
            <scope>provided</scope>
     </dependency>
