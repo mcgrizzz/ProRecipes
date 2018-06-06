@@ -3,12 +3,6 @@
   <groupId>ProRecipes</groupId>
   <artifactId>ProRecipes</artifactId>
   <version>1.0.0</version>
-  <repositories>
-    <repository>
-        <id>local</id>
-        <url>file://${basedir}/repository</url>
-    </repository>
-</repositories>
 
 <dependencies>
     <!--Spigot API-->
