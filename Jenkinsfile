@@ -17,7 +17,6 @@ pipeline {
         stage ('Build') {
             steps {
                 sh '''
-                mvn help:evaluate -Dexpression=settings.localRepository | grep -v [INFO]
                 mvn install -o -e
                 '''
             }
