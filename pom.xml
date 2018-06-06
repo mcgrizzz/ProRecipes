@@ -5,8 +5,8 @@
   <version>1.0.0</version>
   <repositories>
     <repository>
-        <id>spigot-repo</id>
-        <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        <id>local</id>
+        <url>/home/andrew/.m2/repository</url>
     </repository>
 </repositories>
 
