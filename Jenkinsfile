@@ -16,7 +16,10 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'mvn install -o -e'
+                sh '''
+                mvn help:evaluate -Dexpression=settings.localRepository | grep -v '\[INFO\]'
+                mvn install -o -e
+                '''
             }
         }
       stage('Artifact') {
