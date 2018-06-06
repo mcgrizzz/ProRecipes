@@ -10,6 +10,7 @@
     </repository>
   </repositories>
 <dependencies>
+  
     <!--Title Manager -->
     <dependency>
       <groupId>io.puharesource.mc</groupId>
