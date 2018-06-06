@@ -3,6 +3,7 @@
   <groupId>ProRecipes</groupId>
   <artifactId>ProRecipes</artifactId>
   <version>1.0.0</version>
+  <repositories>
     <repository>
       <id>puha-repo</id>
       <url>https://repo.puha.io/repo/</url>
