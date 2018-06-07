@@ -1,6 +1,6 @@
 name: ProRecipes
 main: mc.mcgrizzz.prorecipes.ProRecipes
-version: 2.0.4
+version: 2.0.5
 softdepend: [TitleManager]
 commands:
     builditem:
