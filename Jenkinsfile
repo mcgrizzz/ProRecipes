@@ -26,6 +26,11 @@ pipeline {
       stage('Artifact') {
         steps {
           archiveArtifacts 'target/*.jar'
+          def pom = readMavenPom file: 'pom.xml'
+          echo "MAVEN_RELEASE = ${pom.version}"
+          sh '''
+            ~/workingDir/scripts/prorecipes_gitrelease.sh
+           '''
         }
       }
     }
