@@ -8,6 +8,7 @@ pipeline {
         stage ('Initialize') {
             steps {
                 sh '''
+                git branch
                 echo "PATH = ${PATH}"
                 echo "M2_HOME = ${M2_HOME}"
                 find ~/.m2/repository -name _maven.repositories -exec rm -v {} +;
