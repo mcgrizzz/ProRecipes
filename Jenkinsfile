@@ -29,9 +29,7 @@ pipeline {
           script {
             def pom = readMavenPom file: 'pom.xml'
             echo "MAVEN_RELEASE = ${pom.version}"
-            sh '''
-            ~/workingDir/scripts/prorecipes_gitrelease.sh
-             '''
+            .~/workingDir/scripts/prorecipes_gitrelease.sh 
           }
           
         }
