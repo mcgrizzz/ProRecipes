@@ -29,7 +29,7 @@ pipeline {
             
           script {
             def pom = readMavenPom file: 'pom.xml'
-              sg "(cd ${workspace} && /var/lib/jenkins/workingDir/scripts/prorecipes_gitrelease.sh ${pom.version})" 
+              sh "(cd ${workspace} && /var/lib/jenkins/workingDir/scripts/prorecipes_gitrelease.sh ${pom.version})" 
           }
           
         }
