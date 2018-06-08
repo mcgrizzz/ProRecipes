@@ -28,8 +28,7 @@ pipeline {
           archiveArtifacts 'target/*.jar'
           script {
             def pom = readMavenPom file: 'pom.xml'
-            echo "MAVEN_RELEASE = ${pom.version}"
-              sh  "~/workingDir/scripts/prorecipes_gitrelease.sh $MAVEN_RELEASE" 
+              sh  "~/workingDir/scripts/prorecipes_gitrelease.sh ${pom.version}" 
           }
           
         }
