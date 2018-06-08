@@ -26,9 +26,10 @@ pipeline {
       stage('Artifact') {
         steps {
           archiveArtifacts 'target/*.jar'
+            
           script {
             def pom = readMavenPom file: 'pom.xml'
-              sh  "~/workingDir/scripts/prorecipes_gitrelease.sh ${pom.version}" 
+              sg "(cd ${workspace} && /var/lib/jenkins/workingDir/scripts/prorecipes_gitrelease.sh ${pom.version})" 
           }
           
         }
