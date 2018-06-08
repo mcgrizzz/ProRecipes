@@ -1,7 +1,6 @@
 package mc.mcgrizzz.prorecipes;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.concurrent.Callable;
 import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
@@ -38,8 +38,6 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 
-import mc.mcgrizzz.prorecipes.Metrics.Graph;
-import mc.mcgrizzz.prorecipes.Metrics.Plotter;
 import mc.mcgrizzz.prorecipes.RecipeAPI.RecipeType;
 import mc.mcgrizzz.prorecipes.NBTChecker.MinecraftVersion;
 
@@ -220,97 +218,40 @@ public class ProRecipes extends JavaPlugin implements Listener{
 		
 		creative = getServer().createInventory(null, InventoryType.CREATIVE);
 		
-		Metrics metrics = null;
+		Metrics metrics = new Metrics(this);
 		
-		try {
-			metrics = new Metrics(this);
-			metrics.start();
-			
-			Graph recipesCreated = metrics.createGraph("Recipes Created");
-			
-			Graph recipesCrafted = metrics.createGraph("Recipes Crafted");
-			
-			recipesCreated.addPlotter(new Plotter("Shapeless"){
+		metrics.addCustomChart(new Metrics.AdvancedPie("recipes_created", new Callable<Map<String, Integer>>() {
 
-				@Override
-				public int getValue() {
-					return rec.shapeless.size();
-				}
-				
-			});
-			
-			recipesCreated.addPlotter(new Plotter("Shaped"){
+			@Override
+			public Map<String, Integer> call() throws Exception {
+				Map<String, Integer> valueMap = new HashMap<>();
+	            valueMap.put("Shapeless", rec.shapeless.size());
+	            valueMap.put("Shaped", rec.shaped.size());
+	            valueMap.put("Furnace", rec.fur.size());
+	            valueMap.put("Multicraft", rec.chest.size());
+	            return valueMap;
+			}
+	    }));
+		
+		metrics.addCustomChart(new Metrics.AdvancedPie("recipes_crafted", new Callable<Map<String, Integer>>() {
 
-				@Override
-				public int getValue() {
-					return rec.shaped.size();
-				}
-				
-			});
+			@Override
+			public Map<String, Integer> call() throws Exception {
+				Map<String, Integer> valueMap = new HashMap<>();
+	            valueMap.put("Shapeless", craftedRecipes.containsKey(RecipeType.SHAPELESS) ? 
+						craftedRecipes.get(RecipeType.SHAPELESS) : 0);
+	            valueMap.put("Shaped", craftedRecipes.containsKey(RecipeType.SHAPED) ? 
+						craftedRecipes.get(RecipeType.SHAPED) : 0);
+	            valueMap.put("Furnace", craftedRecipes.containsKey(RecipeType.FURNACE) ? 
+						craftedRecipes.get(RecipeType.FURNACE) : 0);
+	            valueMap.put("Multicraft", craftedRecipes.containsKey(RecipeType.MULTI) ? 
+						craftedRecipes.get(RecipeType.MULTI) : 0);
+	            return valueMap;
+			}
 			
-			recipesCreated.addPlotter(new Plotter("Furnace"){
-
-				@Override
-				public int getValue() {
-					return rec.fur.size();
-				}
-				
-			});
-			
-			recipesCreated.addPlotter(new Plotter("Multicraft"){
-
-				@Override
-				public int getValue() {
-					return rec.chest.size();
-				}
-				
-			});
-			
-			recipesCrafted.addPlotter(new Plotter("Shapeless"){
-
-				@Override
-				public int getValue() {
-					return craftedRecipes.containsKey(RecipeType.SHAPELESS) ? 
-							craftedRecipes.get(RecipeType.SHAPELESS) : 0;
-				}
-				
-			});
-			
-			recipesCrafted.addPlotter(new Plotter("Shaped"){
-
-				@Override
-				public int getValue() {
-					return craftedRecipes.containsKey(RecipeType.SHAPED) ? 
-							craftedRecipes.get(RecipeType.SHAPED) : 0;
-				}
-				
-			});
-			
-			recipesCrafted.addPlotter(new Plotter("Furnace"){
-
-				@Override
-				public int getValue() {
-					return craftedRecipes.containsKey(RecipeType.FURNACE) ? 
-							craftedRecipes.get(RecipeType.FURNACE) : 0;
-				}
-				
-			});
-			
-			recipesCrafted.addPlotter(new Plotter("Multicraft"){
-
-				@Override
-				public int getValue() {
-					return craftedRecipes.containsKey(RecipeType.MULTI) ? 
-							craftedRecipes.get(RecipeType.MULTI) : 0;
-				}
-				
-			});
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    }));
+		
+		
 		if(info.notAuthentic){
 			console.sendMessage(ChatColor.DARK_RED + "Unable to authenticate plugin. It will disable...");
 			//this.getServer().getPluginManager().disablePlugin(this);
