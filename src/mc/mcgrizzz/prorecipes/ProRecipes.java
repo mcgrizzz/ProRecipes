@@ -1,7 +1,10 @@
 package mc.mcgrizzz.prorecipes;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +12,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.logging.Level;
@@ -34,6 +36,9 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.fusesource.jansi.Ansi;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
@@ -375,29 +380,15 @@ public class ProRecipes extends JavaPlugin implements Listener{
 		try {
 			
 			
-			String link = "https://raw.githubusercontent.com/mcgrizzz/PluginVersions/master/versions.txt";
+			String link = "https://api.github.com/repos/mcgrizzz/ProRecipes/releases/latest";
 			
-			ArrayList<String> input = new ArrayList<String>();
-			try {
-				URL url = new URL(link);
-				Scanner s = new Scanner(url.openStream());
-				while(s.hasNext()){
-					input.add(s.next());
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			String jsonRaw = getHTML(link);
 			
+			JsonParser parser = new JsonParser();
+			JsonElement element = parser.parse(jsonRaw);
+			JsonObject obj = element.getAsJsonObject();
 			
-			int start = 0;
-			for(String s : input){
-				if(s.contains(id)){
-					start = input.indexOf(s);
-					break;
-				}
-			}
-			
-			version = input.get(start + 1);
+			version = obj.get("tag_name").getAsString();
 	
 			
 			if(compareVersion(getDescription().getVersion())){
@@ -411,6 +402,20 @@ public class ProRecipes extends JavaPlugin implements Listener{
 		
 		return false;
 	}
+	
+	public String getHTML(String urlToRead) throws Exception {
+	      StringBuilder result = new StringBuilder();
+	      URL url = new URL(urlToRead);
+	      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	      conn.setRequestMethod("GET");
+	      BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	      String line;
+	      while ((line = rd.readLine()) != null) {
+	         result.append(line);
+	      }
+	      rd.close();
+	      return result.toString();
+	   }
 	
 	private boolean compareVersion(String s){
 		 String localVersion = s.replace(" ", "").replaceAll("\\.", " ");
