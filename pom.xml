@@ -95,6 +95,38 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <version>3.0.0</version>
+          <configuration>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+              <minimizeJar>true</minimizeJar>
+              <artifactSet>
+                  <includes>
+                      <include>org.fusesource.jansi:jansi</include>
+                  </includes>
+              </artifactSet>
+              <filters>
+                  <filter>
+                      <artifact>org.fusesource.jansi:jansi</artifact>
+                      <excludes>
+                          <!--Ignore the drivers -->
+                          <exclude>META-INF/**</exclude>
+                      </excludes>
+                  </filter>
+              </filters>
+              <minimizeJar>true</minimizeJar>
+          </configuration>
+          <executions>
+              <execution>
+                  <phase>package</phase>
+                  <goals>
+                      <goal>shade</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
     </plugins>
   </build>
 </project>
