@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -285,6 +286,8 @@ public class ProRecipes extends JavaPlugin implements Listener{
 	public void removeBlacklist(){
 		Iterator<org.bukkit.inventory.Recipe> it = ProRecipes.getPlugin().getServer().recipeIterator();
 		org.bukkit.inventory.Recipe recipe;
+		
+		HashSet<org.bukkit.inventory.Recipe> blacklisted = new HashSet<org.bukkit.inventory.Recipe>();
         while(it.hasNext())
         {
             recipe = it.next();
@@ -293,15 +296,22 @@ public class ProRecipes extends JavaPlugin implements Listener{
             	String id = recipe.getResult().getType().toString().toLowerCase();
             	if(blacklistItems.containsKey(id)){
             		if(blacklistItems.get(id).contains((short)-1)){
-            			it.remove();
+            			blacklisted.add(recipe);
             		}else if(blacklistItems.get(id).contains(recipe.getResult().getDurability())){
-            			it.remove();
+            			blacklisted.add(recipe);
             		}
             	}
             	
             }
         }
+        
+        for(org.bukkit.inventory.Recipe rec : blacklisted){
+        	ProRecipes.getPlugin().mv.getChecker().removeRecipe(it, rec);
+        }
+        
+        blacklisted.clear();
 	}
+	
 	
 	public void removeMeta(Player p){
 		String[] s = {"recipeBuilder","recipeViewer","itemViewer","itemBuilder"};
