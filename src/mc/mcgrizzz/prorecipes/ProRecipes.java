@@ -539,8 +539,8 @@ public class ProRecipes extends JavaPlugin implements Listener{
 		if(checkUpdate && updateNeeded){
 			if(event.getPlayer().hasPermission("prorecipes.notifyupdate")){
 				event.getPlayer().sendMessage(ChatColor.GOLD + "{o------»  " + ChatColor.YELLOW +  "ProRecipes" + ChatColor.GOLD + "  «------o}");
-				event.getPlayer().sendMessage(ChatColor.GOLD + "-> There is an update available (v." + ChatColor.DARK_GREEN + this.version + ChatColor.GOLD + ") ! <-");
-				event.getPlayer().sendMessage(ChatColor.GOLD + "-> Download " + ChatColor.GREEN + "@ https://goo.gl/orffPA" + ChatColor.GOLD + " <-");
+				event.getPlayer().sendMessage(ChatColor.GOLD + "-> There is an update available (" + ChatColor.DARK_GREEN + this.version + ChatColor.GOLD + ") ! <-");
+				event.getPlayer().sendMessage(ChatColor.GOLD + "-> Download " + ChatColor.GREEN + "@ https://goo.gl/mzT8BH" + ChatColor.GOLD + " <-");
 			} 
 		}
 		
