@@ -1,5 +1,5 @@
 name: ProRecipes
-main: mc.mcgrizzz.prorecipes.ProRecipes
+main: me.mcgrizzz.prorecipes.ProRecipes
 version: ${project.version}
 softdepend: [TitleManager]
 commands:
