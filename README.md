@@ -18,6 +18,8 @@ An advanced, yet easy to use, system to create items, create recipes and manage 
  Thank you to everyone who purchased ProRecipes and left kind comments in regards to it. 
  
  I've left the anti-piracy code commented out. 
+ 
+ You can view coding activity [here](https://wakatime.com/@d9793e92-1e91-4109-a006-f1f81007d3a9/projects/wdnwkfjseq).
 	 
 
 # API
