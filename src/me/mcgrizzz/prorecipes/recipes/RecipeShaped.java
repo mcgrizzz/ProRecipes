@@ -12,8 +12,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import mc.mcgrizzz.prorecipes.api.RecipeContainer;
 import me.mcgrizzz.prorecipes.ProRecipes;
-import me.mcgrizzz.prorecipes.api.RecipeContainer;
 import me.mcgrizzz.prorecipes.lib.ItemUtils;
 import me.mcgrizzz.prorecipes.lib.Pair;
 

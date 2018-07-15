@@ -31,9 +31,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import mc.mcgrizzz.prorecipes.api.RecipeAPI;
+import mc.mcgrizzz.prorecipes.api.RecipeAPI.RecipeType;
 import me.mcgrizzz.prorecipes.NBTChecker.MinecraftVersion;
-import me.mcgrizzz.prorecipes.api.RecipeAPI;
-import me.mcgrizzz.prorecipes.api.RecipeAPI.RecipeType;
 import me.mcgrizzz.prorecipes.command.BuildItem;
 import me.mcgrizzz.prorecipes.command.Items;
 import me.mcgrizzz.prorecipes.command.Recipe;

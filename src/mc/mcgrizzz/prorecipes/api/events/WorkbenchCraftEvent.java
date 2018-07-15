@@ -1,20 +1,21 @@
-package me.mcgrizzz.prorecipes.api.events;
+package mc.mcgrizzz.prorecipes.api.events;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import me.mcgrizzz.prorecipes.api.RecipeAPI.RecipeContainer;
+import mc.mcgrizzz.prorecipes.api.RecipeAPI.RecipeContainer;
 
 /**
  * 
- * Called when something is smelted into another
+ * Event is called when a shapeless recipe or shaped recipe is crafted
  *
  */
 
-public class FurnaceCraftEvent extends Event implements Cancellable {
+public class WorkbenchCraftEvent extends Event implements Cancellable{
 	
 	boolean cancelled;
 	
@@ -22,18 +23,22 @@ public class FurnaceCraftEvent extends Event implements Cancellable {
 	
 	RecipeContainer recipe;
 	Inventory i;
+	Player p;
 	ItemStack result;
-	ItemStack source;
 	
-	public FurnaceCraftEvent(RecipeContainer container, Inventory i, ItemStack result, ItemStack source){
+	public WorkbenchCraftEvent(RecipeContainer container, Player p, Inventory i, ItemStack result){
 		this.recipe = container;
+		this.p = p;
 		this.i = i;
 		this.result = result;
-		this.source = source;
 	}
 	
-	public ItemStack getSource(){
-		return this.source;
+	/**
+	 * 
+	 * @return The player who crafted 
+	 */
+	public Player getPlayer(){
+		return this.p;
 	}
 	
 	/**

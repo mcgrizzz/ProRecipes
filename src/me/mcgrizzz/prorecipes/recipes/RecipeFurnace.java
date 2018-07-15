@@ -6,8 +6,8 @@ import java.util.Iterator;
 import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 
+import mc.mcgrizzz.prorecipes.api.RecipeContainer;
 import me.mcgrizzz.prorecipes.ProRecipes;
-import me.mcgrizzz.prorecipes.api.RecipeContainer;
 import me.mcgrizzz.prorecipes.lib.ItemUtils;
 
 public class RecipeFurnace extends RecipeContainer{

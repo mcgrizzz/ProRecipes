@@ -57,12 +57,12 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
+import mc.mcgrizzz.prorecipes.api.RecipeContainer;
+import mc.mcgrizzz.prorecipes.api.RecipeAPI.RecipeType;
+import mc.mcgrizzz.prorecipes.api.events.FurnaceCraftEvent;
+import mc.mcgrizzz.prorecipes.api.events.MulticraftEvent;
+import mc.mcgrizzz.prorecipes.api.events.WorkbenchCraftEvent;
 import me.mcgrizzz.prorecipes.ProRecipes;
-import me.mcgrizzz.prorecipes.api.RecipeAPI.RecipeType;
-import me.mcgrizzz.prorecipes.api.RecipeContainer;
-import me.mcgrizzz.prorecipes.api.events.FurnaceCraftEvent;
-import me.mcgrizzz.prorecipes.api.events.MulticraftEvent;
-import me.mcgrizzz.prorecipes.api.events.WorkbenchCraftEvent;
 import me.mcgrizzz.prorecipes.gui.RecipeBuilder;
 import me.mcgrizzz.prorecipes.lib.ItemUtils;
 import me.mcgrizzz.prorecipes.lib.ReflectionUtils;

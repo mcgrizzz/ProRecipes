@@ -9,11 +9,11 @@ import org.bukkit.inventory.FurnaceInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import mc.mcgrizzz.prorecipes.api.RecipeAPI.RecipeType;
+import mc.mcgrizzz.prorecipes.api.events.FurnaceCraftEvent;
+import mc.mcgrizzz.prorecipes.api.events.MulticraftEvent;
+import mc.mcgrizzz.prorecipes.api.events.WorkbenchCraftEvent;
 import me.mcgrizzz.prorecipes.ProRecipes;
-import me.mcgrizzz.prorecipes.api.RecipeAPI.RecipeType;
-import me.mcgrizzz.prorecipes.api.events.FurnaceCraftEvent;
-import me.mcgrizzz.prorecipes.api.events.MulticraftEvent;
-import me.mcgrizzz.prorecipes.api.events.WorkbenchCraftEvent;
 
 public class EventListener implements Listener{
 	

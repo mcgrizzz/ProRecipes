@@ -1,4 +1,4 @@
-package me.mcgrizzz.prorecipes.api;
+package mc.mcgrizzz.prorecipes.api;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -6,8 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import mc.mcgrizzz.prorecipes.api.RecipeAPI.RecipeType;
 import me.mcgrizzz.prorecipes.ProRecipes;
-import me.mcgrizzz.prorecipes.api.RecipeAPI.RecipeType;
 
 public class Recipe implements CommandExecutor {
 
