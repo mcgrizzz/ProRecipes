@@ -6,13 +6,13 @@ import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
 
-import me.mcgrizzz.prorecipes.ProRecipes;
-import me.mcgrizzz.prorecipes.lib.Pair;
-import me.mcgrizzz.prorecipes.recipes.RecipeChest;
-import me.mcgrizzz.prorecipes.recipes.RecipeFurnace;
-import me.mcgrizzz.prorecipes.recipes.RecipeShaped;
-import me.mcgrizzz.prorecipes.recipes.RecipeShapeless;
-import me.mcgrizzz.prorecipes.recipes.Recipes;
+import mc.mcgrizzz.prorecipes.ProRecipes;
+import mc.mcgrizzz.prorecipes.lib.Pair;
+import mc.mcgrizzz.prorecipes.recipes.RecipeChest;
+import mc.mcgrizzz.prorecipes.recipes.RecipeFurnace;
+import mc.mcgrizzz.prorecipes.recipes.RecipeShaped;
+import mc.mcgrizzz.prorecipes.recipes.RecipeShapeless;
+import mc.mcgrizzz.prorecipes.recipes.Recipes;
 
 public class RecipeAPI{
 	
