@@ -2,6 +2,7 @@ name: ProRecipes
 main: mc.mcgrizzz.prorecipes.ProRecipes
 version: ${project.version}
 softdepend: [TitleManager]
+api-version: 1.13
 commands:
     builditem:
         description: Build an item with a custom display name, and lore.

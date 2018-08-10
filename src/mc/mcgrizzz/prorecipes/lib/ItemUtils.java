@@ -37,7 +37,7 @@ public class ItemUtils {
 		}
 		boolean skullNoOwn = false;
 		String textures = "";
-		if(itemStack.getType() == Material.SKULL){
+		if(itemStack.getType() == MinecraftVersion.getMaterial("SKULL","PLAYER_HEAD")){
 			SkullMeta meta = (SkullMeta)itemStack.getItemMeta();
 			if(!meta.hasOwner()){
 				//meta.setOwner("***4239uivui3903j4vn");
@@ -136,9 +136,7 @@ public class ItemUtils {
 	  }
 	 
 	 public static boolean isVanilla(ItemStack i){
-		 for(ItemStack b : ProRecipes.getPlugin().creative.getContents()){
-			 if(i.isSimilar(b))return true;
-		 }
+		 if(!i.getType().isItem())return false;
 		 if(i.hasItemMeta())return false;
 		 if(i.getEnchantments().size() > 0)return false;
 		 return true;

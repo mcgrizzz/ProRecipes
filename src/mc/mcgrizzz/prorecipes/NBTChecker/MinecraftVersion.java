@@ -1,9 +1,13 @@
 package mc.mcgrizzz.prorecipes.NBTChecker;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+
 import java.lang.reflect.Constructor;
 
 public enum MinecraftVersion {
-	
+
+	v1_13_R1("v_1_13_R1",NBTChecker_v1_13_R1.class),
 	
 	v1_12_R1("v_1_12_R2", NBTChecker_v1_12_R1.class),
 	
@@ -55,6 +59,14 @@ public enum MinecraftVersion {
 			}
 		}
 		return NoVersion;
+	}
+
+	public static boolean up13(){
+		return Integer.valueOf(Bukkit.getVersion().split("\\.")[1].replace(")",""))>12;
+	}
+
+	public static Material getMaterial(String v12,String v13){
+		return Material.valueOf(up13()?v13:v12);
 	}
 
 }

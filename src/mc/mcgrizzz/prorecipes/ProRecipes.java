@@ -59,8 +59,6 @@ public class ProRecipes extends JavaPlugin implements Listener{
 	
 	public boolean loadedRecipes = false;
 	
-	public Inventory creative;
-	
 	Recipes rec;
 	ItemBuilder b;
 	RecipeBuilder rb;
@@ -424,8 +422,6 @@ public class ProRecipes extends JavaPlugin implements Listener{
 		
 		ItemUtils.createFakeRecipes();
 		loadedRecipes = true;
-		
-		creative = getServer().createInventory(null, InventoryType.CREATIVE);
 	 }
 	 
 	 
