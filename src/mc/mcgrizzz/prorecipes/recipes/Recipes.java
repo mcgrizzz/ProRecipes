@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Level;
 
+import mc.mcgrizzz.prorecipes.NBTChecker.MinecraftVersion;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -360,7 +361,7 @@ public class Recipes implements Listener{
 		}
 		
 		public void setTexture(ItemStack i, ConfigurationSection s, String path){
-			if(i != null && i.getType() == Material.SKULL_ITEM){
+			if(i != null && i.getType() == MinecraftVersion.getMaterial("SKULL_ITEM","PLAYER_HEAD")){
 				SkullMeta meta = (SkullMeta)i.getItemMeta();
 				if(!meta.hasOwner()){
 					GameProfile f = null;
@@ -389,7 +390,7 @@ public class Recipes implements Listener{
 		}
 		
 		public ItemStack checkTexture(ItemStack i, ConfigurationSection s, String path){
-			if(i == null || i.getType() != Material.SKULL_ITEM){
+			if(i == null || i.getType() != MinecraftVersion.getMaterial("SKULL_ITEM","PLAYER_HEAD")){
 				return i;
 			}
 			if(s == null){
@@ -858,7 +859,7 @@ public class Recipes implements Listener{
 			////System.out.println(event.getBlock().getType());
 			
 			if(event.getBlock().getType().equals(Material.SIGN) || 
-					event.getBlock().getType().equals(Material.SIGN_POST) || event.getBlock().getType().equals(Material.WALL_SIGN)){
+					event.getBlock().getType().equals(MinecraftVersion.getMaterial("SIGN_POST","WALL_SIGN")) || event.getBlock().getType().equals(Material.WALL_SIGN)){
 				
 				////System.out.println("Sign");
 				org.bukkit.block.Sign s = (org.bukkit.block.Sign) event.getBlock().getState();
@@ -959,7 +960,7 @@ public class Recipes implements Listener{
 				
 				Block signP = b.getRelative(BlockFace.DOWN).getRelative(f);
 				if(signP.getType().equals(Material.SIGN) || 
-						signP.getType().equals(Material.SIGN_POST) || signP.getType().equals(Material.WALL_SIGN)){
+						signP.getType().equals(MinecraftVersion.getMaterial("SIGN_POST","WALL_SIGN")) || signP.getType().equals(Material.WALL_SIGN)){
 					org.bukkit.block.Sign s = (org.bukkit.block.Sign) b.getRelative(BlockFace.DOWN).getRelative(f).getState();
 					if(s.getLine(1).equalsIgnoreCase(ProRecipes.getPlugin().ms.getMessage("Multi_Craft", ChatColor.GOLD + "Multi-Craft"))){
 						return true;
@@ -980,15 +981,20 @@ public class Recipes implements Listener{
 			}else{
 				it = Bukkit.createInventory(p, 54, ProRecipes.getPlugin().ms.getMessage("Multi_Craft_View", ChatColor.GOLD + "View Recipe"));
 			}
-			
-			
-			ItemStack gPane = new ItemStack(Material.STAINED_GLASS_PANE);
-			gPane.setDurability((short) 13);
+
+			ItemStack gPane=null,greyPane=null;
+			if(MinecraftVersion.up13()){
+				gPane=new ItemStack(Material.valueOf("GREEN_STAINED_GLASS_PANE"));
+				greyPane=new ItemStack(Material.valueOf("GRAY_STAINED_GLASS_PANE"));
+			}else{
+				gPane = new ItemStack(Material.valueOf("STAINED_GLASS_PANE"));
+				greyPane = new ItemStack(Material.valueOf("STAINED_GLASS_PANE"));
+				gPane.setDurability((short) 13);
+				greyPane.setDurability((short)7);
+			}
 			ItemMeta m = gPane.getItemMeta();
 			m.setDisplayName(ChatColor.BLACK + "#");
 			gPane.setItemMeta(m);
-			ItemStack greyPane = new ItemStack(Material.STAINED_GLASS_PANE);
-			greyPane.setDurability((short)7);
 			m = greyPane.getItemMeta();
 			m.setDisplayName(ChatColor.BLACK + "#");
 			greyPane.setItemMeta(m);
@@ -1020,13 +1026,19 @@ public class Recipes implements Listener{
 
 				@Override
 				public void run() {
-					ItemStack gPane = new ItemStack(Material.STAINED_GLASS_PANE);
-					gPane.setDurability((short) 13);
+					ItemStack gPane=null,greyPane=null;
+					if(MinecraftVersion.up13()){
+						gPane=new ItemStack(Material.valueOf("GREEN_STAINED_GLASS_PANE"));
+						greyPane=new ItemStack(Material.valueOf("GRAY_STAINED_GLASS_PANE"));
+					}else{
+						gPane = new ItemStack(Material.valueOf("STAINED_GLASS_PANE"));
+						greyPane = new ItemStack(Material.valueOf("STAINED_GLASS_PANE"));
+						gPane.setDurability((short) 13);
+						greyPane.setDurability((short)7);
+					}
 					ItemMeta m = gPane.getItemMeta();
 					m.setDisplayName(ChatColor.BLACK + "#");
 					gPane.setItemMeta(m);
-					ItemStack greyPane = new ItemStack(Material.STAINED_GLASS_PANE);
-					greyPane.setDurability((short)7);
 					m = greyPane.getItemMeta();
 					m.setDisplayName(ChatColor.BLACK + "#");
 					greyPane.setItemMeta(m);

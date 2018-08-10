@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import mc.mcgrizzz.prorecipes.NBTChecker.MinecraftVersion;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -76,7 +77,7 @@ public class RecipeManager implements Listener {
 				m.setDisplayName(ChatColor.DARK_PURPLE + "Furnace (" + ProRecipes.getPlugin().getRecipes().fur.size() + ")");
 				takeLoree.setItemMeta(m);
 				
-				ItemStack takeLoreee = new ItemStack(Material.WORKBENCH);
+				ItemStack takeLoreee = new ItemStack(MinecraftVersion.getMaterial("WORKBENCH","CRAFTING_TABLE"));
 				m = takeLoree.getItemMeta();
 				m.setDisplayName(ChatColor.DARK_GREEN + "Multi-Craft (" + ProRecipes.getPlugin().getRecipes().chest.size() + ")");
 				takeLoreee.setItemMeta(m);

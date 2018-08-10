@@ -3,6 +3,7 @@ package mc.mcgrizzz.prorecipes.gui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import mc.mcgrizzz.prorecipes.NBTChecker.MinecraftVersion;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -222,7 +223,7 @@ public class RecipeBuilder implements Listener{
 				m.setDisplayName(ChatColor.DARK_PURPLE + "Furnace");
 				takeLoree.setItemMeta(m);
 				
-				ItemStack takeLoreee = new ItemStack(Material.WORKBENCH);
+				ItemStack takeLoreee = new ItemStack(MinecraftVersion.getMaterial("WORKBENCH","CRAFTING_TABLE"));
 				m = takeLoree.getItemMeta();
 				m.setDisplayName(ChatColor.DARK_GREEN + "Multi-Craft");
 				takeLoreee.setItemMeta(m);
