@@ -90,5 +90,5 @@ There are also cancellable bukkit events dedicated as part of the API.
 Services
 -
 
-[![Plugin Shop](https://i.imgur.com/enlPypU.gif)](https://www.spigotmc.org/threads/%E2%98%85-drepics-plugin-shop-%E2%98%85-over-7-years-of-experience-fast-service.59741/)
+[![Plugin Shop](https://i.imgur.com/enlPypU.gif)](https://shop.drepic.xyz/)
 
